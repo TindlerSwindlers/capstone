@@ -41,8 +41,8 @@ We will use a board of cards to show what issues are being worked on and what is
 MINIMUM VIABLE PRODUCT
 
 1. User will be able to register
-2. User will be able to see and update their profile
-3. User be able to write a post that will be rendered on their profile
+2. User will be able to see and update their profile, also delete a profile
+3. User be able to write a post that will be rendered on their profile, they can edit it and delete
 4. Every user will have a feed/dashboard page where they can see other user and their recent posts
 
 Stretch Goals
