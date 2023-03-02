@@ -1,4 +1,4 @@
-# FS-App-Template
+# Capstone Project-Dating website
 
 ## Setup
 
@@ -9,13 +9,11 @@
 - git commit -m 'first commit'
 - set up origin on github
 
-
 ## Customize
 
 Now that you've got the code, follow these steps to get acclimated:
 
-* Update project name and description in `package.json`, this is your database
-
+- Update project name and description in `package.json`, this is your database
 
 ## Start
 
