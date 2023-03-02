@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User },
+  models: { User, Post, Comment },
 } = require("../server/db");
 
 /**
@@ -14,7 +14,7 @@ async function seed() {
   console.log("db synced!");
 
   // Creating Users
-  const users = await Promise.all([
+  const [cody, murphy, tiffany, laura, kia] = await Promise.all([
     User.create({
       username: "cody",
       name: "Cody",
@@ -71,14 +71,48 @@ async function seed() {
     }),
   ]);
 
-  console.log(`seeded ${users.length} users`);
+  const [post1, post2] = await Promise.all([
+    Post.create({
+      text: "I just watched an amazing movie-Godfather!!!",
+      likes: 4,
+      userId: murphy.id,
+    }),
+    Post.create({
+      text: "Weather is perfect for a walk by the water",
+      likes: 5,
+      userId: tiffany.id,
+    }),
+  ]);
+
+  const [comment1, comment2, comment3] = await Promise.all([
+    Comment.create({
+      text: "Just when I thought I was out, they pull me back in!",
+      likes: 10,
+      userId: laura.id,
+      postId: post1.id,
+    }),
+    Comment.create({
+      text: "My favorite movie!",
+      likes: 4,
+      userId: cody.id,
+      postId: post1.id,
+    }),
+    Comment.create({
+      text: "You are right, it's beautiful today",
+      likes: 4,
+      userId: kia.id,
+      postId: post2.id,
+    }),
+  ]);
+
+  // console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
-  return {
-    users: {
-      cody: users[0],
-      murphy: users[1],
-    },
-  };
+  // return {
+  //   users: {
+  //     cody: users[0],
+  //     murphy: users[1],
+  //   },
+  // };
 }
 
 /*
