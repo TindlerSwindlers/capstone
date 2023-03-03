@@ -1,16 +1,25 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchPosts } from "../store/posts";
 
 /**
  * COMPONENT
  */
 export const Homepage = (props) => {
-  const { username } = props;
+  // const { username } = props;
+  // const { posts } = useSelector((state) => state);
+  const { auth } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  // console.log("POSTS", posts);
+
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, []);
 
   return (
     <div>
-      <h3>Welcome, {username}</h3>
+      <h3>Welcome, {auth.username}</h3>
     </div>
   );
 };
@@ -18,16 +27,17 @@ export const Homepage = (props) => {
 /**
  * CONTAINER
  */
-const mapState = (state) => {
-  return {
-    username: state.auth.username,
-  };
-};
+// const mapState = (state) => {
+//   return {
+//     username: state.auth.username,
+//     posts: state.posts
+//   };
+// };
 
-const mapDispatch = (dispatch) => {
-  return {
-    getPosts: () => dispatch(fetchPosts()),
-  };
-};
+// const mapDispatch = (dispatch) => {
+//   return {
+//     getPosts: () => dispatch(fetchPosts()),
+//   };
+// };
 
-export default connect(mapState, mapDispatch)(Homepage);
+export default Homepage;

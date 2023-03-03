@@ -22,11 +22,11 @@ export const fetchPosts = () => {
 };
 
 //Reducer
-export default posts = (state = {}, action) => {
+export default function (state = {}, action) {
   switch (action.type) {
     case GET_POSTS:
       return action.posts;
     default:
       return state;
   }
-};
+}
