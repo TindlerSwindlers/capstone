@@ -4,7 +4,7 @@ const {
 } = require('../db');
 module.exports = router;
 const multer = require('multer');
-const uuidv4 = require('uuid/v4');
+const uuidv4 = require('uuid');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
