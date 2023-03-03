@@ -7,11 +7,11 @@ import { fetchPosts } from "../store/posts";
  */
 export const Homepage = (props) => {
   // const { username } = props;
-  // const { posts } = useSelector((state) => state);
+  const { posts } = useSelector((state) => state);
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  // console.log("POSTS", posts);
+  console.log("POSTS", posts);
 
   useEffect(() => {
     dispatch(fetchPosts());
