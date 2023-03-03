@@ -27,7 +27,7 @@ export const addPost = (id, data) => {
   return async (dispatch) => {
     const response = await axios.post(`/api/posts/${id}`, data);
     dispatch(_addPost(response.data));
-    history.push('../');
+    // history.push('../');
   };
 };
 
@@ -38,7 +38,6 @@ export default posts = (state = [], action) => {
       return action.posts;
     case ADD_POST:
       return [...state, action.post];
-
     default:
       return state;
   }

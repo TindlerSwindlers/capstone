@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchPosts } from "../store/posts";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchPosts } from '../store/posts';
 
 export const Homepage = () => {
   const { posts } = useSelector((state) => state);
