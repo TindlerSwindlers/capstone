@@ -11,9 +11,9 @@ const Post = ({ auth, post, deletePost }) => {
   };
   return (
     <div>
-      <button onClick={(e) => handleClick(e)}>x</button>
-      <p>
-        {auth.id === user.id ? (
+      {auth.id === user.id ? (
+        <div>
+          <button onClick={(e) => handleClick(e)}>x</button>
           <button>
             <Link
               to={{
@@ -26,10 +26,10 @@ const Post = ({ auth, post, deletePost }) => {
               Edit Post
             </Link>
           </button>
-        ) : (
-          ''
-        )}
-      </p>
+        </div>
+      ) : (
+        ''
+      )}
       <p>post :{text}</p>
       <img src={imageUrl} width="300" height="300"></img>
       <p>from : {user.username}</p>
