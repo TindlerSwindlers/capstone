@@ -1,18 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPost, me } from '../store';
+import { editPost } from '../store';
 
-class AddPost extends React.Component {
+class EditPost extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: 0,
       text: '',
       myImage: {},
+      imageUrl: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this);
   }
+
+  componentDidMount() {
+    this.setState(this.props.location.state.post);
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.text === '') {
@@ -21,7 +28,7 @@ class AddPost extends React.Component {
       const formData = new FormData();
       formData.append('myImage', this.state.myImage);
       formData.append('text', this.state.text);
-      this.props.addPost(this.props.auth.id, formData);
+      this.props.editPost(this.state.id, formData);
     }
   }
 
@@ -49,7 +56,7 @@ class AddPost extends React.Component {
             accept=".jpeg, .png, .jpg"
             onChange={handleFileUpload}
           />
-          <button>Post</button>
+          <button>Save</button>
         </form>
       </div>
     );
@@ -57,9 +64,9 @@ class AddPost extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addPost: (id, data) => {
-    dispatch(addPost(id, data));
+  editPost: (id, data) => {
+    dispatch(editPost(id, data));
   },
 });
 
-export default connect((state) => state, mapDispatchToProps)(AddPost);
+export default connect((state) => state, mapDispatchToProps)(EditPost);

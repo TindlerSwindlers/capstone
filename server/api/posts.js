@@ -4,7 +4,7 @@ const {
 } = require('../db');
 module.exports = router;
 const multer = require('multer');
-const uuidv4 = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -57,18 +57,31 @@ router.post('/:id', upload.single('myImage'), async (req, res, next) => {
       userId: req.params.id,
       imageUrl: '../../' + imageName,
     });
-    res.json(newPost);
+    res.json(await Post.findByPk(newPost.id, { include: [User] }));
+    // res.json(newPost);
   } catch (err) {
     next(err);
   }
 });
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', upload.single('myImage'), async (req, res, next) => {
   try {
-    await Post.update(req.body, { where: { id: req.params.id } });
+    let imageName = '';
+    if (req.file) {
+      imageName = req.file.filename;
+    } else {
+      imageName = 'no-image-icon.png';
+    }
+    await Post.update(
+      {
+        ...req.body,
+        imageUrl: '../../' + imageName,
+      },
+      { where: { id: req.params.id } }
+    );
     res.json(
       await Post.findByPk(req.params.id, {
-        include: [User],
+        include: [{ model: Comment }, { model: User }],
       })
     );
   } catch (error) {
@@ -78,12 +91,11 @@ router.put('/:id', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const posts = await Post.findAll({
-      where: { userId: req.params.id },
+    const post = await Post.findByPk(req.params.id, {
       include: [{ model: Comment }, { model: User }],
       order: [['updatedAt', 'DESC']],
     });
-    res.json(posts);
+    res.json(post);
   } catch (err) {
     next(err);
   }
