@@ -67,6 +67,7 @@ async function seed() {
       imageUrl:
         "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.nfl.com%2Fnews%2Fnext-woman-up-molly-higgins-evp-of-community-affairs-and-engagement-for-the-los-&psig=AOvVaw35v5jCvHEmzAz9nqMumDiT&ust=1677810654675000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCOC9rvKZvP0CFQAAAAAdAAAAABAT",
       gender: "male",
+      interest: "female",
       hobbies: "Painting and visiting museums",
     }),
   ]);
