@@ -16,7 +16,7 @@ const _addPost = (post) => ({ type: ADD_POST, post });
 const _deletePost = (id) => ({ type: DELETE_POST, id });
 const _editPost = (post) => ({ type: EDIT_POST, post });
 const _addComment = (comment) => ({ type: ADD_COMMENT, comment });
-// const _deleteComment = (id, postId) => ({ type: DELETE_COMMENT, id, postId });
+
 //Thunk creators
 
 export const fetchPosts = () => {
@@ -85,18 +85,8 @@ export default function (state = [], action) {
         post.id === action.post.id ? action.post : post
       );
     case ADD_COMMENT:
+      console.log("STATE FROM REDUCER", state);
       return [...state, action.comment];
-    // case DELETE_COMMENT:
-    //   console.log("STATE", state);
-    //   return [
-    //     state.map((post) => {
-    //       if (post.id === action.postId) {
-    //         console.log("POST FROM REDUCER", post);
-    //         // post.comments.filter((comment) => comment.id !== action.id);
-    //       }
-    //       return post;
-    //     }),
-    //   ];
     default:
       return state;
   }
