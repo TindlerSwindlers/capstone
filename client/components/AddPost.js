@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addPost, me } from '../store';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 
 class AddPost extends React.Component {
   constructor(props) {
@@ -38,20 +42,32 @@ class AddPost extends React.Component {
     const { handleSubmit, handleChange, handleFileUpload } = this;
     const { text } = this.state;
     return (
-      <div>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="text">Text</label>
-          <input name="text" value={text} onChange={handleChange}></input>
-          <input
-            type="file"
-            label="Image"
-            name="myFile"
-            accept=".jpeg, .png, .jpg"
-            onChange={handleFileUpload}
-          />
-          <button>Post</button>
-        </form>
-      </div>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-around',
+          width: '60%',
+          height: '10rem',
+          padding: '1rem',
+        }}
+      >
+        <TextField id="text" label="text" name="text" onChange={handleChange} />
+        <input
+          type="file"
+          label="Image"
+          name="myFile"
+          accept=".jpeg, .png, .jpg"
+          onChange={handleFileUpload}
+        />
+        <Button
+          variant="contained"
+          endIcon={<BorderColorIcon />}
+          onClick={handleSubmit}
+        >
+          Post
+        </Button>
+      </Box>
     );
   }
 }
