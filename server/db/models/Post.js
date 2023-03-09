@@ -1,13 +1,14 @@
-const Sequelize = require("sequelize");
-const db = require("../db");
+const Sequelize = require('sequelize');
+const db = require('../db');
 
-const Post = db.define("post", {
+const Post = db.define('post', {
   text: {
     type: Sequelize.TEXT,
     allowNull: false,
   },
   likes: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.ARRAY(Sequelize.INTEGER),
+    defaultValue: [],
   },
   imageUrl: {
     type: Sequelize.TEXT,
