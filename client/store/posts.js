@@ -6,8 +6,6 @@ const GET_POSTS = "GET_POSTS";
 const ADD_POST = "ADD_POST";
 const DELETE_POST = "DELETE_POST";
 const EDIT_POST = "EDIT_POST";
-const ADD_COMMENT = "ADD_COMMENT";
-const DELETE_COMMENT = "DELETE_COMMENT";
 
 //Action creators
 
@@ -15,8 +13,7 @@ const _getPosts = (posts) => ({ type: GET_POSTS, posts });
 const _addPost = (post) => ({ type: ADD_POST, post });
 const _deletePost = (id) => ({ type: DELETE_POST, id });
 const _editPost = (post) => ({ type: EDIT_POST, post });
-const _addComment = (comment) => ({ type: ADD_COMMENT, comment });
-// const _deleteComment = (id, postId) => ({ type: DELETE_COMMENT, id, postId });
+
 //Thunk creators
 
 export const fetchPosts = () => {
@@ -53,24 +50,6 @@ export const editPost = (id, data) => {
   };
 };
 
-export const addComment = (postId, userId, data) => {
-  return async (dispatch) => {
-    const response = await axios.post(
-      `/api/comments/${postId}/${userId}`,
-      data
-    );
-    dispatch(_addComment(response.data));
-    history.push("../home");
-  };
-};
-
-export const deleteComment = (id) => {
-  return async (dispatch) => {
-    await axios.delete(`/api/comments/${id}`);
-    dispatch(fetchPosts());
-  };
-};
-
 //Reducer
 export default function (state = [], action) {
   switch (action.type) {
@@ -84,19 +63,6 @@ export default function (state = [], action) {
       return state.map((post) =>
         post.id === action.post.id ? action.post : post
       );
-    case ADD_COMMENT:
-      return [...state, action.comment];
-    // case DELETE_COMMENT:
-    //   console.log("STATE", state);
-    //   return [
-    //     state.map((post) => {
-    //       if (post.id === action.postId) {
-    //         console.log("POST FROM REDUCER", post);
-    //         // post.comments.filter((comment) => comment.id !== action.id);
-    //       }
-    //       return post;
-    //     }),
-    //   ];
     default:
       return state;
   }

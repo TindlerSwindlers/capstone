@@ -22,7 +22,7 @@ router.post("/:postid/:userid", async (req, res, next) => {
     const newEntry = await Comment.create({
       ...req.body,
       userId: req.params.userid,
-      postId: req.params.listid,
+      postId: req.params.postid,
     });
     const newComment = await Comment.findByPk(newEntry.id, { include: [User] });
     res.json(newComment);

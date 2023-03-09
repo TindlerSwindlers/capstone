@@ -11,7 +11,6 @@ class Post extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount() {
-    console.log(this.props);
     this.props.setComments(this.props.post);
   }
   handleClick() {
@@ -19,11 +18,9 @@ class Post extends React.Component {
   }
 
   render() {
-    console.log("PROPS", this.props);
     const { id, text, likes, imageUrl, comments, user } = this.props.post;
     const post = this.props.post;
     const { auth } = this.props;
-    console.log(user.id);
     return (
       <div>
         {auth.id ? (
@@ -50,7 +47,7 @@ class Post extends React.Component {
         <p>from : {user.username}</p>
         <p>likes:{likes}</p>
         <p>comments:</p>
-        <Comment comments={comments} postId={id} />
+        <Comment comments={comments} postId={id} userId={user.id} />
         <hr />
       </div>
     );
