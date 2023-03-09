@@ -2,6 +2,7 @@ const router = require('express').Router();
 const {
   models: { User, Comment, Post },
 } = require('../db');
+const sequelize = require('sequelize');
 module.exports = router;
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
@@ -108,5 +109,23 @@ router.delete('/:id', async (req, res, next) => {
     res.sendStatus(204);
   } catch (ex) {
     next(ex);
+  }
+});
+
+router.post('/addlikes/:id', async (req, res, next) => {
+  try {
+    console.log(req.body);
+    let post = await Post.findByPk(req.params.id, {
+      include: [{ model: Comment }, { model: User }],
+      order: [['updatedAt', 'DESC']],
+    });
+    if (!post.likes.includes(req.body.id)) {
+      post.likes.push(req.body.id);
+    }
+    await Post.update({ likes: post.likes }, { where: { id: post.id } });
+    const newPost = await Post.findByPk(post.id);
+    res.json(post);
+  } catch (err) {
+    next(err);
   }
 });

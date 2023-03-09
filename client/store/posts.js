@@ -1,13 +1,13 @@
-import axios from "axios";
-import history from "../history";
+import axios from 'axios';
+import history from '../history';
 //Action types
 
-const GET_POSTS = "GET_POSTS";
-const ADD_POST = "ADD_POST";
-const DELETE_POST = "DELETE_POST";
-const EDIT_POST = "EDIT_POST";
-const ADD_COMMENT = "ADD_COMMENT";
-const DELETE_COMMENT = "DELETE_COMMENT";
+const GET_POSTS = 'GET_POSTS';
+const ADD_POST = 'ADD_POST';
+const DELETE_POST = 'DELETE_POST';
+const EDIT_POST = 'EDIT_POST';
+const ADD_COMMENT = 'ADD_COMMENT';
+const DELETE_COMMENT = 'DELETE_COMMENT';
 
 //Action creators
 
@@ -22,10 +22,10 @@ const _addComment = (comment) => ({ type: ADD_COMMENT, comment });
 export const fetchPosts = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("/api/posts");
+      const response = await axios.get('/api/posts');
       dispatch(_getPosts(response.data));
     } catch (e) {
-      console.log("Error trying to get all posts in thunk", e);
+      console.log('Error trying to get all posts in thunk', e);
     }
   };
 };
@@ -34,7 +34,7 @@ export const addPost = (id, data) => {
   return async (dispatch) => {
     const response = await axios.post(`/api/posts/${id}`, data);
     dispatch(_addPost(response.data));
-    history.push("../home");
+    history.push('../home');
   };
 };
 
@@ -49,7 +49,7 @@ export const editPost = (id, data) => {
   return async (dispatch) => {
     const response = await axios.put(`/api/posts/${id}`, data);
     dispatch(_editPost(response.data));
-    history.push("../home");
+    history.push('../home');
   };
 };
 
@@ -60,7 +60,7 @@ export const addComment = (postId, userId, data) => {
       data
     );
     dispatch(_addComment(response.data));
-    history.push("../home");
+    history.push('../home');
   };
 };
 
@@ -68,6 +68,13 @@ export const deleteComment = (id) => {
   return async (dispatch) => {
     await axios.delete(`/api/comments/${id}`);
     dispatch(fetchPosts());
+  };
+};
+
+export const addLikes = (id, user) => {
+  return async (dispatch) => {
+    const response = await axios.post(`/api/posts/addlikes/${id}`, user);
+    dispatch(_editPost(response.data));
   };
 };
 
