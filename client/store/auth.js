@@ -6,7 +6,9 @@ const TOKEN = 'token'
 /**
  * ACTION TYPES
  */
-const SET_AUTH = 'SET_AUTH'
+const SET_AUTH = 'SET_AUTH';
+const UPDATE_PROFILE = 'UPDATE_PROFILE';
+const DELTE_PROFILE = 'DELETE_PROFILE'
 
 /**
  * ACTION CREATORS
@@ -28,6 +30,32 @@ export const me = () => async dispatch => {
   }
 }
 
+export const updateProfile = (profile) => {
+  return async(dispatch) => {
+    const token = window.localStorage.getItem(TOKEN)
+    const res = await axios.put('/auth/me', profile, {
+      headers: {
+        authorization: token
+      }
+    })
+    dispatch({ 
+      type: UPDATE_PROFILE,
+      auth: { ...res.data }
+    });
+  };
+};
+
+export const deleteProfile = (id) => {
+  return async(dispatch) => {
+    const res = await axios.delete(`/api/users/${id}`)
+    dispatch({ 
+      type: DELTE_PROFILE,
+      auth: { ...res.data }
+    });
+  };
+};
+
+
 export const authenticate = (username, password, method) => async dispatch => {
   try {
     const res = await axios.post(`/auth/${method}`, {username, password})
@@ -47,14 +75,18 @@ export const logout = () => {
   }
 }
 
+
+
 /**
  * REDUCER
  */
 export default function(state = {}, action) {
-  switch (action.type) {
-    case SET_AUTH:
+  if (action.type === SET_AUTH || action.type === UPDATE_PROFILE) {
       return action.auth
-    default:
-      return state
   }
+
+  if (action.type === DELTE_PROFILE) {
+    return action.auth
+  }
+  return state;
 }
