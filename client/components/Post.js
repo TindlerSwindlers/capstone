@@ -25,7 +25,9 @@ class Post extends React.Component {
     const { id, text, likes, imageUrl, comments, user } = this.props.post;
     const post = this.props.post;
     const { auth } = this.props;
+
     const { handleClick, handleLikes } = this;
+
     return (
       <div>
         {auth.id === user.id ? (
@@ -55,7 +57,7 @@ class Post extends React.Component {
           <button onClick={(e) => handleLikes(id, auth)}>Likes</button>
         </p>
         <p>comments:</p>
-        <Comment comments={comments} postId={id} />
+        <Comment comments={comments} postId={id} userId={user.id} />
         <hr />
       </div>
     );

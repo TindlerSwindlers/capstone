@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteComment } from "../store/posts";
+import { deleteComment } from "../store/comments";
+import AddComment from "./AddComment";
 
-const Comment = ({ comments, postId }) => {
-  //   const { comments } = post;
+const Comment = ({ comments, postId, userId }) => {
   const dispatch = useDispatch();
   const handleClick = (id) => {
-    console.log("ID FROM HANDLE", id);
     dispatch(deleteComment(id, postId));
   };
 
@@ -29,6 +28,7 @@ const Comment = ({ comments, postId }) => {
             </div>
           ))}
       </ul>
+      <AddComment postId={postId} userId={userId} />
     </div>
   );
 };

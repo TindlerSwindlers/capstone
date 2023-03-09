@@ -5,12 +5,13 @@ import Post from "./Post";
 
 export const Homepage = () => {
   const { posts } = useSelector((state) => state);
+  const { comments } = useSelector((state) => state);
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchPosts());
-  }, []);
+  }, [comments]);
 
   return (
     <div>

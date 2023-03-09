@@ -8,6 +8,7 @@ const Comment = db.define("comment", {
   },
   likes: {
     type: Sequelize.INTEGER,
+    defaultValue: 0,
   },
 });
 
