@@ -8,6 +8,7 @@ const TOKEN = 'token'
  */
 const SET_AUTH = 'SET_AUTH';
 const UPDATE_PROFILE = 'UPDATE_PROFILE';
+const DELTE_PROFILE = 'DELETE_PROFILE'
 
 /**
  * ACTION CREATORS
@@ -38,11 +39,22 @@ export const updateProfile = (profile) => {
       }
     })
     dispatch({ 
-      type: 'UPDATE_PROFILE',
+      type: UPDATE_PROFILE,
       auth: { ...res.data }
     });
   };
 };
+
+export const deleteProfile = (id) => {
+  return async(dispatch) => {
+    const res = await axios.delete(`/api/users/${id}`)
+    dispatch({ 
+      type: DELTE_PROFILE,
+      auth: { ...res.data }
+    });
+  };
+};
+
 
 export const authenticate = (username, password, method) => async dispatch => {
   try {
@@ -71,6 +83,10 @@ export const logout = () => {
 export default function(state = {}, action) {
   if (action.type === SET_AUTH || action.type === UPDATE_PROFILE) {
       return action.auth
+  }
+
+  if (action.type === DELTE_PROFILE) {
+    return action.auth
   }
   return state;
 }
