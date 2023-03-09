@@ -1,5 +1,6 @@
 import axios from "axios";
 import history from "../history";
+import { fetchPosts } from "./posts";
 //Action types
 
 const ADD_COMMENT = "ADD_COMMENT";
@@ -33,9 +34,8 @@ export const addComment = (postId, userId, data) => {
 
 export const deleteComment = (id) => {
   return async (dispatch) => {
-    console.log("ID FROM THUNK", id);
     await axios.delete(`/api/comments/${id}`);
-    dispatch(_deleteComment(id));
+    dispatch(fetchPosts());
   };
 };
 
@@ -45,9 +45,7 @@ export default function (state = { comments: [] }, action) {
     case SET_COMMENTS:
       return action.comments;
     case ADD_COMMENT:
-      return [...state, action.comment];
-    case DELETE_COMMENT:
-      return state.comments.filter((comment) => comment.id !== action.id);
+      return { comments: [...state.comments, action.comment] };
     default:
       return state;
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteComment } from "../store/posts";
+import { deleteComment } from "../store/comments";
 import AddComment from "./AddComment";
 
 const Comment = ({ comments, postId, userId }) => {
@@ -25,10 +25,10 @@ const Comment = ({ comments, postId, userId }) => {
                   x
                 </button>
               </li>
-              <AddComment postId={postId} userId={userId} />
             </div>
           ))}
       </ul>
+      <AddComment postId={postId} userId={userId} />
     </div>
   );
 };
