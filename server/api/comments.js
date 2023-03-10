@@ -17,6 +17,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+
 router.post("/:postid/:userid", async (req, res, next) => {
   try {
     const newEntry = await Comment.create({

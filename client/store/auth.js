@@ -45,6 +45,7 @@ export const updateProfile = (profile) => {
   };
 };
 
+
 export const deleteProfile = (id) => {
   return async(dispatch) => {
     const res = await axios.delete(`/api/users/${id}`)
