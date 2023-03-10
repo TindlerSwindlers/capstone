@@ -37,7 +37,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-router.get("/:id/recommended", async (req, res, next) => {
+router.get("/recommended/:id", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id, {
       include: [{ model: Post }, { model: Comment }],
