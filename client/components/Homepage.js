@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchPosts } from "../store/posts";
 import Post from "./Post";
+import RecommendedProfiles from "./RecommendedProfiles";
 
 export const Homepage = () => {
   const { posts } = useSelector((state) => state);
@@ -16,6 +17,7 @@ export const Homepage = () => {
   return (
     <div>
       <h3>Welcome, {auth.username}</h3>
+      <RecommendedProfiles userId={auth.id} />
       {posts &&
         posts.map((post) => (
           <div key={post.id}>
