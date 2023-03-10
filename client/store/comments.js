@@ -58,6 +58,8 @@ export default function (state = { comments: [] }, action) {
       return action.comments;
     case ADD_COMMENT:
       return { comments: [...state.comments, action.comment] };
+      case FETCH_PROFILE_COMMENTS:
+        return {comments: action.comments};
     default:
       return state;
   }
