@@ -114,7 +114,6 @@ router.delete('/:id', async (req, res, next) => {
 
 router.post('/addlikes/:id', async (req, res, next) => {
   try {
-    console.log(req.body);
     let post = await Post.findByPk(req.params.id, {
       include: [{ model: Comment }, { model: User }],
       order: [['updatedAt', 'DESC']],

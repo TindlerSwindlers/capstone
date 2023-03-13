@@ -20,66 +20,63 @@ async function seed() {
       name: 'Cody',
       lastName: 'Wilson',
       password: '123',
-      imageUrl:
-        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fman&psig=AOvVaw23HVkZQ0OiDn__DmjvlKsS&ust=1677810380471000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCPiF0O-YvP0CFQAAAAAdAAAAABAE',
+      imageUrl: '../../man1.jpg',
       gender: 'male',
       interest: 'female',
-      hobbies: 'Fishing, skiing, brewing my own beer',
+      hobbies: ['Fishing', 'Skiing', 'brewing my own beer'],
     }),
     User.create({
       username: 'murphy',
       name: 'Murphy',
       lastName: 'Manzer',
       password: '123',
-      imageUrl:
-        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fyoung-men&psig=AOvVaw23HVkZQ0OiDn__DmjvlKsS&ust=1677810380471000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCPiF0O-YvP0CFQAAAAAdAAAAABAJ',
+      imageUrl: '../../man2.jpeg',
       gender: 'male',
       interest: 'female',
-      hobbies: 'Good music, wine and making people laugh',
+      hobbies: ['Good music', 'Wine', 'Making people laugh'],
     }),
     User.create({
       username: 'tiffany',
       name: 'Tiffany',
       lastName: 'Collins',
       password: '123',
-      imageUrl:
-        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.lofficielsingapore.com%2Fculture%2F19-year-old-most-beautiful-woman-in-the-world&psig=AOvVaw35v5jCvHEmzAz9nqMumDiT&ust=1677810654675000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCOC9rvKZvP0CFQAAAAAdAAAAABAE',
+      imageUrl: '../../woman1.jpg',
       gender: 'female',
       interest: 'male',
-      hobbies: 'Web development, cooking and good wine',
+      hobbies: ['Web development', 'Cooking', 'Wine'],
     }),
     User.create({
       username: 'laura',
       name: 'Laura',
       lastName: 'Soprano',
       password: '123',
-      imageUrl:
-        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Fphotos%2Fwoman&psig=AOvVaw35v5jCvHEmzAz9nqMumDiT&ust=1677810654675000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCOC9rvKZvP0CFQAAAAAdAAAAABAJ',
+      imageUrl: '../../woman2.jpg',
       gender: 'female',
       interest: 'male',
-      hobbies: 'Paragliding, biking and cooking',
+      hobbies: ['Paragliding', 'Biking', 'Cooking'],
     }),
     User.create({
       username: 'kia',
       name: 'Kia',
       lastName: 'Sanders',
       password: '123',
-      imageUrl:
-        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.nfl.com%2Fnews%2Fnext-woman-up-molly-higgins-evp-of-community-affairs-and-engagement-for-the-los-&psig=AOvVaw35v5jCvHEmzAz9nqMumDiT&ust=1677810654675000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCOC9rvKZvP0CFQAAAAAdAAAAABAT',
+      imageUrl: '../../man3.jpg',
       gender: 'male',
       interest: 'female',
-      hobbies: 'Painting and visiting museums',
+      hobbies: ['Painting', 'Visiting museums'],
     }),
   ]);
 
   const [post1, post2] = await Promise.all([
     Post.create({
       text: 'I just watched an amazing movie-Godfather!!!',
+      imageUrl: '../../godfather.jpg',
       likes: [1, 2, 3, 4],
       userId: murphy.id,
     }),
     Post.create({
       text: 'Weather is perfect for a walk by the water',
+      imageUrl: '../../river.jpg',
       likes: [1, 2, 3, 4, 5],
       userId: tiffany.id,
     }),

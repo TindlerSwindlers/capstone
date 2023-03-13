@@ -1,14 +1,14 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { deleteComment } from "../store/comments";
-import AddComment from "./AddComment";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteComment } from '../store/comments';
+import AddComment from './AddComment';
 
 const Comment = ({ comments, postId, userId }) => {
   const dispatch = useDispatch();
   const handleClick = (id) => {
     dispatch(deleteComment(id, postId));
   };
-// hi
+  // hi
   return (
     <div>
       <ul>

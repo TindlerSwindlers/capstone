@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchRecommended } from "../store/auth";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchRecommended } from '../store/auth';
+import Box from '@mui/material/Box';
 
 const RecommendedProfiles = ({ userId }) => {
   const { auth } = useSelector((state) => state);
@@ -13,16 +14,29 @@ const RecommendedProfiles = ({ userId }) => {
   return (
     <div>
       <p>Your recommended profiles:</p>
-      {auth.profiles &&
-        auth.profiles.map((profile) => (
-          <div key={profile.id}>
-            <p>
-              {profile.name} {profile.lastName}
-            </p>
-            <img src={profile.imageUrl} />
-            <p>Hobbies: {profile.hobbies}</p>
-          </div>
-        ))}
+      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+        {auth.profiles &&
+          auth.profiles.map((profile) => (
+            <Box
+              key={profile.id}
+              sx={{
+                padding: '1rem',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <p>
+                {profile.name} {profile.lastName}
+              </p>
+              <img
+                src={profile.imageUrl}
+                style={{ width: '200px', height: '200px' }}
+              />
+              <p>Hobbies: {profile.hobbies.join(', ')}</p>
+            </Box>
+          ))}
+      </Box>
     </div>
   );
 };
