@@ -10,13 +10,14 @@ const SET_AUTH = 'SET_AUTH';
 const UPDATE_PROFILE = 'UPDATE_PROFILE';
 const DELTE_PROFILE = 'DELETE_PROFILE';
 const GET_RECOMMENDED = 'GET_RECOMMENDED';
+const SINGLE_PROFILE = 'SINGLE_PROFILE';
 
 /**
  * ACTION CREATORS
  */
 const setAuth = (auth) => ({ type: SET_AUTH, auth });
 const _getRecommended = (profiles) => ({ type: GET_RECOMMENDED, profiles });
-
+const _singleProfile = (profile) => ({ type: SINGLE_PROFILE, profile });
 /**
  * THUNK CREATORS
  */
@@ -64,6 +65,13 @@ export const fetchRecommended = (userId) => {
   };
 };
 
+export const singleProfile = (id) => {
+  return async (dispatch) => {
+    const user = await axios.get(`/api/users/${id}`);
+    dispatch(_singleProfile(user.data));
+  };
+};
+
 export const authenticate = (inputs) => async (dispatch) => {
   try {
     const res = await axios.post(`/auth/${inputs.formName}`, inputs);
@@ -95,6 +103,9 @@ export default function (state = {}, action) {
   }
   if (action.type === DELTE_PROFILE) {
     return action.auth;
+  }
+  if (action.type === SINGLE_PROFILE) {
+    return { ...state, singleProfile: action.profile };
   }
   return state;
 }

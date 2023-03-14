@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchRecommended } from '../store/auth';
 import Box from '@mui/material/Box';
 
@@ -26,9 +27,9 @@ const RecommendedProfiles = ({ userId }) => {
                 alignItems: 'center',
               }}
             >
-              <p>
+              <Link to={`/profile/${profile.id}`}>
                 {profile.name} {profile.lastName}
-              </p>
+              </Link>
               <img
                 src={profile.imageUrl}
                 style={{ width: '200px', height: '200px' }}
