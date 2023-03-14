@@ -5,6 +5,7 @@ import auth from "./auth";
 import posts from "./posts";
 import comments from "./comments";
 
+
 const reducer = combineReducers({ auth, posts, comments });
 const middleware = applyMiddleware(
   thunkMiddleware,
