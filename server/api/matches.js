@@ -18,7 +18,6 @@ router.post("/:id", async (req, res, next) => {
 router.get("/", async (req, res, next) => {
   try {
     const all = await Match.findAll();
-    console.log("MATCH", Match);
     res.send(all);
   } catch (error) {
     console.log("Error in API trying to query to Match", error);
