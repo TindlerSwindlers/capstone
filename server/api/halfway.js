@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const sequelize = require("sequelize");
-const { Halfway } = require("../db");
+const {
+  models: { Halfway },
+} = require("../db");
 
 router.get("/:id", async (req, res, next) => {
   try {
@@ -16,11 +18,12 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-router.post("/:id", async (req, res, next) => {
+router.post("/:id/:sparkId", async (req, res, next) => {
   try {
     const newHalfway = await Halfway.create({
+      ...req.body,
       currentUser: req.params.id,
-      otherUser: req.body,
+      otherUserId: req.params.sparkId,
     });
     res.send(newHalfway);
   } catch (error) {
