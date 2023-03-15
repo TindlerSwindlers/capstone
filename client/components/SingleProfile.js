@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { addHalfway } from "../store/halfways";
 import { useLocation } from "react-router-dom";
+import { addMatch } from "../store/matches";
 
 const SingleProfile = (props) => {
   const { auth } = useSelector((state) => state);
@@ -34,7 +35,9 @@ const SingleProfile = (props) => {
       </h1>
       <img src={imageUrl}></img>
       {from === "halfways" ? (
-        <button>Send a spark back!!!</button>
+        <button onClick={() => dispatch(addMatch(auth.id, id))}>
+          Send a spark back!!!
+        </button>
       ) : (
         <button onClick={() => dispatch(addHalfway(auth.id, id))}>
           Send them a spark!
