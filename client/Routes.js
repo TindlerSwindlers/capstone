@@ -6,6 +6,7 @@ import Homepage from './components/Homepage';
 import AddPost from './components/AddPost';
 import EditPost from './components/EditPost';
 import Profile from './components/Profile';
+import SingleProfile from './components/SingleProfile';
 import { me } from './store';
 
 /**
@@ -24,7 +25,8 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Homepage} />
-            <Route path="/profile" component={Profile} />
+            <Route exact path="/profile" component={Profile} />
+            <Route path="/profile/:id" component={SingleProfile} />
             {/* <Redirect to="/home" /> */}
             <Route path="/newpost" component={AddPost} />
             <Route path="/editpost/:id" component={EditPost} />
