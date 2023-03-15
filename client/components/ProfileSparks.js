@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { singleProfile } from "../store/auth";
 import { fetchProfileHalfways } from "../store/halfways";
+import { Link } from "react-router-dom";
 
 const ProfileSparks = ({ id }) => {
   const { halfways } = useSelector((state) => state);
@@ -11,17 +11,21 @@ const ProfileSparks = ({ id }) => {
     dispatch(fetchProfileHalfways(id));
   }, []);
 
-  //   const halfwayProfiles = halfways.map((halfway) => {
-  //     return dispatch(singleProfile(halfway.currentUser));
-  //   });
-
-  console.log("halfways ", halfways);
-
   return (
     <div>
       {halfways &&
         halfways.map((halfway) => (
-          <p key={halfway.id}>{halfway.currentUser.name}</p>
+          <Link
+            key={halfway.id}
+            to={{
+              pathname: `/profile/${halfway.id}`,
+              state: {
+                from: "halfways",
+              },
+            }}
+          >
+            {halfway.currentUser.name}
+          </Link>
         ))}
     </div>
   );

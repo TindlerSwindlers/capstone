@@ -4,10 +4,13 @@ import { singleProfile } from "../store/auth";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { addHalfway } from "../store/halfways";
+import { useLocation } from "react-router-dom";
 
 const SingleProfile = (props) => {
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
+  let location = useLocation();
+  const { from } = location.state;
   useEffect(() => {
     dispatch(singleProfile(props.match.params.id));
   }, []);
@@ -30,9 +33,13 @@ const SingleProfile = (props) => {
         {name} {lastName}
       </h1>
       <img src={imageUrl}></img>
-      <button onClick={() => dispatch(addHalfway(auth.id, id))}>
-        Send them a spark!
-      </button>
+      {from === "halfways" ? (
+        <button>Send a spark back!!!</button>
+      ) : (
+        <button onClick={() => dispatch(addHalfway(auth.id, id))}>
+          Send them a spark!
+        </button>
+      )}
       <Paper sx={{ padding: "1rem", margin: "1rem", background: "#FDEDEC" }}>
         <p>Hobbies: {hobbies ? hobbies.join(", ") : ""}</p>
         <p>Interest: {interest}</p>
