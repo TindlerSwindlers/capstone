@@ -13,7 +13,6 @@ const SingleProfile = (props) => {
   }, []);
   const {
     id,
-    username,
     name,
     lastName,
     hobbies,

@@ -21,6 +21,15 @@ Post.hasMany(Comment);
 
 // Halfway.belongsTo(User);
 // User.hasMany(Halfway);
+Halfway.belongsTo(User, { as: "currentUser" });
+Halfway.belongsTo(User, { as: "likedUser" });
+
+Match.belongsTo(User, { as: "user1" });
+Match.belongsTo(User, { as: "user2" });
+User.belongsTo(Match);
+
+// Match.hasOne(User, { foreignKey: "user2Id", as: "user2", targetKey: "id" });
+// User.belongsToMany(User, { as: "match", through: "UserMatch" });
 
 UserMatch.belongsTo(User);
 User.hasMany(UserMatch);

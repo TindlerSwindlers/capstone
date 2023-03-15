@@ -1,17 +1,18 @@
 const router = require("express").Router();
 const sequelize = require("sequelize");
 const {
-  models: { Halfway },
+  models: { Halfway, User },
 } = require("../db");
 
 router.get("/:id", async (req, res, next) => {
   try {
     const likedYou = await Halfway.findAll({
+      include: { model: User, as: "currentUser" },
       where: {
-        otherUser: req.params.id,
+        likedUserId: req.params.id,
       },
     });
-    res.send(likedYou.data);
+    res.send(likedYou);
   } catch (error) {
     console.log("Error from API trying to query halfways");
     next(error);
@@ -22,8 +23,8 @@ router.post("/:id/:sparkId", async (req, res, next) => {
   try {
     const newHalfway = await Halfway.create({
       ...req.body,
-      currentUser: req.params.id,
-      otherUserId: req.params.sparkId,
+      currentUserId: req.params.id,
+      likedUserId: req.params.sparkId,
     });
     res.send(newHalfway);
   } catch (error) {

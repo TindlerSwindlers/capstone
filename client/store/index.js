@@ -4,9 +4,9 @@ import thunkMiddleware from "redux-thunk";
 import auth from "./auth";
 import posts from "./posts";
 import comments from "./comments";
+import halfways from "./halfways";
 
-
-const reducer = combineReducers({ auth, posts, comments });
+const reducer = combineReducers({ auth, posts, comments, halfways });
 const middleware = applyMiddleware(
   thunkMiddleware,
   createLogger({ collapsed: true })

@@ -5,10 +5,10 @@ const ADD_HALFWAY = "ADD_HALFWAY";
 
 export const fetchProfileHalfways = (id) => {
   return async (dispatch) => {
-    const res = await axios.get(`/api/halfways/${userId}`);
+    const res = await axios.get(`/api/halfways/${id}`);
     dispatch({
       type: FETCH_HALFWAYS,
-      halfways: res.data.halfways,
+      halfways: res.data,
     });
   };
 };

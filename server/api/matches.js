@@ -1,7 +1,18 @@
 const router = require("express").Router();
 const sequelize = require("sequelize");
-const { Match } = require("../db");
+const {
+  models: { Match },
+} = require("../db");
 
+router.get("/", async (req, res, next) => {
+  try {
+    const all = await Match.findAll();
+    res.send(all);
+  } catch (error) {
+    console.log("Error in API trying to query to Match", error);
+    next(error);
+  }
+});
 router.post("/:id", async (req, res, next) => {
   try {
     await Match.create({
@@ -11,16 +22,6 @@ router.post("/:id", async (req, res, next) => {
     });
   } catch (error) {
     console.log("Error in API trying to post to Match", error);
-    next(error);
-  }
-});
-
-router.get("/", async (req, res, next) => {
-  try {
-    const all = await Match.findAll();
-    res.send(all);
-  } catch (error) {
-    console.log("Error in API trying to query to Match", error);
     next(error);
   }
 });
