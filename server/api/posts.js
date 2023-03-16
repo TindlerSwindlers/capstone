@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const fileName = file.originalname.toLowerCase().split(' ').join('-');
-    cb(null, uuidv4() + '-' + fileName);
+    cb(null, +uuidv4() + '-' + fileName);
   },
 });
 
@@ -56,10 +56,9 @@ router.post('/:id', upload.single('myImage'), async (req, res, next) => {
     const newPost = await Post.create({
       ...req.body,
       userId: req.params.id,
-      imageUrl: '../../' + imageName,
+      imageUrl: imageName,
     });
     res.json(await Post.findByPk(newPost.id, { include: [User] }));
-    // res.json(newPost);
   } catch (err) {
     next(err);
   }
@@ -71,12 +70,12 @@ router.put('/:id', upload.single('myImage'), async (req, res, next) => {
     if (req.file) {
       imageName = req.file.filename;
     } else {
-      imageName = 'no-image-icon.png';
+      imageName = req.body.imageUrl;
     }
     await Post.update(
       {
         ...req.body,
-        imageUrl: '../../' + imageName,
+        imageUrl: imageName,
       },
       { where: { id: req.params.id } }
     );
