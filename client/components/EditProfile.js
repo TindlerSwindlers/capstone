@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateProfile } from '../store/auth';
 
 const ProfileForm = () => {
-  const { auth } = useSelector(state => state);
+  const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
     username: '',
     password: '',
     name: '',
     lastName: '',
-    hobbies: '',
+    hobbies: [],
     interest: '',
     gender: '',
     imageUrl: '',
@@ -34,58 +34,74 @@ const ProfileForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
-  }
-  
+  };
+
   const handleSubmit = () => {
     dispatch(updateProfile(inputs));
-  }
+  };
 
   return (
     <div className="profile-form">
-      <label><b>Username</b></label>
+      <label>
+        <b>Username</b>
+      </label>
       <input
         name="username"
         defaultValue={inputs.username}
         onChange={handleChange}
       />
-      <label><b>Password</b></label>
+      <label>
+        <b>Password</b>
+      </label>
       <input
         type="password"
         name="password"
         defaultValue={inputs.password}
         onChange={handleChange}
       />
-      <label><b>Frist Name</b></label>
+      <label>
+        <b>Frist Name</b>
+      </label>
       <input
         name="firstName"
         defaultValue={inputs.name}
         onChange={handleChange}
       />
-      <label><b>Last Name</b></label>
+      <label>
+        <b>Last Name</b>
+      </label>
       <input
         name="lastName"
         defaultValue={inputs.lastName}
         onChange={handleChange}
       />
-      <label><b>Hobbies</b></label>
+      <label>
+        <b>Hobbies</b>
+      </label>
       <input
         name="hobbies"
         defaultValue={inputs.hobbies}
         onChange={handleChange}
       />
-         <label><b>Interest</b></label>
+      <label>
+        <b>Interest</b>
+      </label>
       <input
         name="interest"
         defaultValue={inputs.interest}
         onChange={handleChange}
       />
-         <label><b>Gender</b></label>
+      <label>
+        <b>Gender</b>
+      </label>
       <input
         name="gender"
         defaultValue={inputs.gender}
         onChange={handleChange}
       />
-         <label><b>Profile Picture</b></label>
+      <label>
+        <b>Profile Picture</b>
+      </label>
       <input
         name="iamgeUrl"
         defaultValue={inputs.imageUrl}
@@ -93,9 +109,7 @@ const ProfileForm = () => {
       />
       <br></br>
       <br></br>
-      <button onClick={handleSubmit}>
-        Submit
-      </button>
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 };

@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchPosts } from "../store/posts";
-import Post from "./Post";
-import RecommendedProfiles from "./RecommendedProfiles";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchPosts } from '../store/posts';
+import Post from './Posts/Post';
+import RecommendedProfiles from './RecommendedProfiles';
 
 export const Homepage = () => {
   const { posts } = useSelector((state) => state);

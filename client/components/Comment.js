@@ -1,14 +1,14 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteComment } from '../store/comments';
 import AddComment from './AddComment';
 
 const Comment = ({ comments, postId, userId }) => {
+  const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
   const handleClick = (id) => {
     dispatch(deleteComment(id, postId));
   };
-  // hi
   return (
     <div>
       <ul>
@@ -17,13 +17,17 @@ const Comment = ({ comments, postId, userId }) => {
             <div key={comment.id}>
               <li>
                 {comment.text}
-                <button
-                  onClick={(e) => {
-                    e.preventDefault(), handleClick(comment.id);
-                  }}
-                >
-                  x
-                </button>
+                {userId === auth.id ? (
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault(), handleClick(comment.id);
+                    }}
+                  >
+                    x
+                  </button>
+                ) : (
+                  <span />
+                )}
               </li>
             </div>
           ))}

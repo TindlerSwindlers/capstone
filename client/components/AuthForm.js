@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
-import { authenticate } from '../store';
+import { authenticate } from '../store/auth';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -132,7 +132,7 @@ const AuthForm = (props) => {
             </FormControl>
           </Box>
         ) : (
-          ''
+          <span />
         )}
         <Button
           type="submit"

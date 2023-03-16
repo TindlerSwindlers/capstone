@@ -2,11 +2,10 @@ import axios from 'axios';
 import history from '../history';
 //Action types
 
-const GET_POSTS = "GET_POSTS";
-const ADD_POST = "ADD_POST";
-const DELETE_POST = "DELETE_POST";
-const EDIT_POST = "EDIT_POST";
-
+const GET_POSTS = 'GET_POSTS';
+const ADD_POST = 'ADD_POST';
+const DELETE_POST = 'DELETE_POST';
+const EDIT_POST = 'EDIT_POST';
 
 //Action creators
 
