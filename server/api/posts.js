@@ -2,8 +2,6 @@ const router = require('express').Router();
 const {
   models: { User, Comment, Post },
 } = require('../db');
-const sequelize = require('sequelize');
-module.exports = router;
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
 
@@ -59,7 +57,6 @@ router.post('/:id', upload.single('myImage'), async (req, res, next) => {
       imageUrl: '../../' + imageName,
     });
     res.json(await Post.findByPk(newPost.id, { include: [User] }));
-    // res.json(newPost);
   } catch (err) {
     next(err);
   }
@@ -128,3 +125,5 @@ router.post('/addlikes/:id', async (req, res, next) => {
     next(err);
   }
 });
+
+module.exports = router;

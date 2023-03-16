@@ -2,7 +2,7 @@ const router = require("express").Router();
 const {
   models: { User, Comment, Post },
 } = require("../db");
-module.exports = router;
+
 
 router.get("/:id", async (req, res, next) => {
   try {
@@ -41,3 +41,5 @@ router.delete("/:id", async (req, res, next) => {
     next(ex);
   }
 });
+
+module.exports = router;

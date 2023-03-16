@@ -2,8 +2,8 @@ const router = require('express').Router();
 const {
   models: { User, Comment, Post },
 } = require('../db');
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
+const {Op} = require('sequelize')
+
 
 router.get('/', async (req, res, next) => {
   try {
@@ -12,15 +12,6 @@ router.get('/', async (req, res, next) => {
       attributes: ['id', 'username', 'interest'],
     });
     res.json(users);
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.post('/', async (req, res, next) => {
-  try {
-    const newUser = await User.create(req.body);
-    res.json(newUser);
   } catch (err) {
     next(err);
   }
@@ -59,12 +50,15 @@ router.get('/recommended/:id', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const user = await User.update(req.body);
+    const user = await User.findByPk(req.params.id);
+    await user.update(req.body);
     res.json(user);
   } catch (err) {
-    next(err);
+    console.log(err);
   }
 });
+
+
 
 router.delete('/:id', async (req, res, next) => {
   try {

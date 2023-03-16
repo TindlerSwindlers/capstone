@@ -2,15 +2,19 @@ const Sequelize = require('sequelize');
 const db = require('../db');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const axios = require('axios');
 
-const SALT_ROUNDS = 5;
+
+const SALT_ROUNDS = process.env.SALT_ROUNDS || 5;
+
 
 const User = db.define('user', {
   username: {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   name: {
     type: Sequelize.STRING,
@@ -37,7 +41,7 @@ const User = db.define('user', {
   },
 });
 
-module.exports = User;
+
 
 /**
  * instanceMethods
@@ -69,7 +73,7 @@ User.findByToken = async function (token) {
     const { id } = await jwt.verify(token, process.env.JWT);
     const user = User.findByPk(id);
     if (!user) {
-      throw 'nooo';
+      throw '404 User Not Found';
     }
     return user;
   } catch (ex) {
@@ -92,3 +96,6 @@ const hashPassword = async (user) => {
 User.beforeCreate(hashPassword);
 User.beforeUpdate(hashPassword);
 User.beforeBulkCreate((users) => Promise.all(users.map(hashPassword)));
+
+
+module.exports = User;
