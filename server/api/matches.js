@@ -33,6 +33,7 @@ router.post("/", async (req, res, next) => {
       user2Id: req.body.user2,
     });
     await UserMatch.create({ userId: req.body.user1, matchId: newMatch.id });
+    await UserMatch.create({ userId: req.body.user2, matchId: newMatch.id });
     res.send(newMatch);
   } catch (error) {
     console.log("Error in API trying to post to Match", error);

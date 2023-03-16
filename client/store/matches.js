@@ -21,7 +21,7 @@ export const addMatch = (user1, user2) => {
     });
     dispatch({
       type: ADD_MATCH,
-      matches: res.data,
+      matchesAdded: res.data,
     });
   };
 };
@@ -31,7 +31,7 @@ export default function (state = [], action) {
     case FETCH_MATCHES:
       return action.matches;
     case ADD_MATCH:
-      return [...state, action.matches];
+      return [...state, action.matchesAdded];
     default:
       return state;
   }

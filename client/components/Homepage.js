@@ -16,7 +16,7 @@ export const Homepage = () => {
 
   return (
     <div>
-      <h3>Welcome, {auth.username}</h3>
+      <h3>Welcome, {auth.name}</h3>
       <RecommendedProfiles userId={auth.id} />
       {posts &&
         posts.map((post) => (

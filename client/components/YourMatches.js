@@ -13,8 +13,9 @@ const YourMatches = () => {
 
   return (
     <div>
-      {matches.length > 0 ? (
-        matches.map((match) => <p key={match.id}>{match.match.user2.name}</p>)
+      {console.log("YOUR MATCHES", matches)}
+      {matches[0] ? (
+        matches.map((match) => <p key={match.id}>{match.match?.user2.name}</p>)
       ) : (
         <p>No matches at this moment. Try to send a spark to someone!</p>
       )}
