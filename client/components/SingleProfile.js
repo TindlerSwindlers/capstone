@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { singleProfile } from "../store/auth";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import { addHalfway } from "../store/halfways";
+import { addHalfway, fetchProfileHalfways } from "../store/halfways";
 import { useLocation } from "react-router-dom";
 import { addMatch } from "../store/matches";
 
@@ -12,9 +12,15 @@ const SingleProfile = (props) => {
   const dispatch = useDispatch();
   let location = useLocation();
   const { from } = location.state;
+
   useEffect(() => {
     dispatch(singleProfile(props.match.params.id));
   }, []);
+
+  const changeSpark = async () => {
+    await dispatch(addMatch(auth.id, id));
+    await dispatch(fetchProfileHalfways(auth.id));
+  };
   const {
     id,
     name,
@@ -35,9 +41,7 @@ const SingleProfile = (props) => {
       </h1>
       <img src={imageUrl}></img>
       {from === "halfways" ? (
-        <button onClick={() => dispatch(addMatch(auth.id, id))}>
-          Send a spark back!!!
-        </button>
+        <button onClick={changeSpark}>Send a spark back!!!</button>
       ) : (
         <button onClick={() => dispatch(addHalfway(auth.id, id))}>
           Send them a spark!

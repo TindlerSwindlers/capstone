@@ -13,12 +13,12 @@ const ProfileSparks = ({ id }) => {
 
   return (
     <div>
-      {halfways &&
+      {halfways[0] &&
         halfways.map((halfway) => (
           <Link
             key={halfway.id}
             to={{
-              pathname: `/profile/${halfway.id}`,
+              pathname: `/profile/${halfway.currentUser.id}`,
               state: {
                 from: "halfways",
               },
