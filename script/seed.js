@@ -11,11 +11,11 @@ const Match = require("../server/db/models/Match");
  *      match the models, and populates the database.
  */
 async function seed() {
-  await db.sync({ force: true }); // clears db and matches models to tables
+  await db.sync({ force: true });
   console.log("db synced!");
 
   // Creating Users
-  const [cody, murphy, tiffany, laura, kia] = await Promise.all([
+  const [cody, murphy, tiffany, laura, kai] = await Promise.all([
     User.create({
       username: "cody",
       name: "Cody",
@@ -57,8 +57,8 @@ async function seed() {
       hobbies: ["Paragliding", "Biking", "Cooking"],
     }),
     User.create({
-      username: "kia",
-      name: "Kia",
+      username: "kai",
+      name: "Kai",
       lastName: "Sanders",
       password: "123",
       imageUrl: "../../man3.jpg",
@@ -99,13 +99,12 @@ async function seed() {
     Comment.create({
       text: "You are right, it's beautiful today",
       likes: 4,
-      userId: kia.id,
+      userId: kai.id,
       postId: post2.id,
     }),
   ]);
 
   const [match1, match2] = await Promise.all([
-    // Match.bulkCreate([{ user1Id: laura.id, user2Id: cody.id }]),
     Match.create({
       user1Id: tiffany.id,
       user2Id: murphy.id,
@@ -116,14 +115,7 @@ async function seed() {
     }),
   ]);
 
-  // console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
-  // return {
-  //   users: {
-  //     cody: users[0],
-  //     murphy: users[1],
-  //   },
-  // };
 }
 
 /*
