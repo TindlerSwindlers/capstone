@@ -1,24 +1,28 @@
 const router = require("express").Router();
 const sequelize = require("sequelize");
 const {
-  models: { Match, Halfway, UserMatch },
+  models: { Match, Halfway, UserMatch, User },
 } = require("../db");
 
-// router.get("/:id", async (req, res, next) => {
-//   try {
-//     const all = await Match.findAll({
-//       where: {
-//         user1Id: req.params.id,
-//       } || {
-//         user2Id: req.params.id,
-//       },
-//     });
-//     res.send(all);
-//   } catch (error) {
-//     console.log("Error in API trying to query to Match", error);
-//     next(error);
-//   }
-// });
+router.get("/:id", async (req, res, next) => {
+  try {
+    const matches = await UserMatch.findAll({
+      where: {
+        userId: req.params.id,
+      },
+      include: {
+        model: Match,
+        include: [{ model: User, as: "user2" }],
+      },
+    });
+    console.log("MATCHES API", matches);
+    res.send(matches);
+  } catch (error) {
+    console.log("Error getting matches from API", error);
+    next(error);
+  }
+});
+
 router.post("/", async (req, res, next) => {
   try {
     await Halfway.destroy({
