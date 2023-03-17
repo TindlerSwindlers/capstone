@@ -6,16 +6,18 @@ const {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const matches = await UserMatch.findAll({
+    let matches = await UserMatch.findAll({
       where: {
         userId: req.params.id,
       },
       include: {
         model: Match,
-        include: [{ model: User, as: "user2" }],
+        include: [
+          { model: User, as: "user2" },
+          { model: User, as: "user1" },
+        ],
       },
     });
-    console.log("MATCHES API", matches);
     res.send(matches);
   } catch (error) {
     console.log("Error getting matches from API", error);
