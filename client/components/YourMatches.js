@@ -13,9 +13,14 @@ const YourMatches = () => {
 
   return (
     <div>
-      {console.log("YOUR MATCHES", matches)}
       {matches[0] ? (
-        matches.map((match) => <p key={match.id}>{match.match?.user2.name}</p>)
+        matches.map((match) =>
+          match.match?.user2.id !== auth.id ? (
+            <p key={match.id}>{match.match?.user2.name}</p>
+          ) : (
+            <p key={match.id}>{match.match?.user1.name}</p>
+          )
+        )
       ) : (
         <p>No matches at this moment. Try to send a spark to someone!</p>
       )}
