@@ -2,8 +2,6 @@ const router = require('express').Router();
 const {
   models: { User, Comment, Post },
 } = require('../db');
-const sequelize = require('sequelize');
-module.exports = router;
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
 
@@ -127,3 +125,5 @@ router.post('/addlikes/:id', async (req, res, next) => {
     next(err);
   }
 });
+
+module.exports = router;

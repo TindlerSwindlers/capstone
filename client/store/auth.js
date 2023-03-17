@@ -36,7 +36,7 @@ export const me = () => async (dispatch) => {
 export const updateProfile = (profile) => {
   return async (dispatch) => {
     const token = window.localStorage.getItem(TOKEN);
-    const res = await axios.put("/auth/me", profile, {
+    const res = await axios.put(`/auth/me`, profile, {
       headers: {
         authorization: token,
       },
