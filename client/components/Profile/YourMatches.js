@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProfileMatches } from "../store/matches";
+import { fetchProfileMatches } from "../../store/matches";
 
 const YourMatches = () => {
   const { matches } = useSelector((state) => state);

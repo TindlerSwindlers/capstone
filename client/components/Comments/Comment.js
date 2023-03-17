@@ -1,7 +1,7 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteComment } from '../store/comments';
-import AddComment from './AddComment';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteComment } from "../../store/comments";
+import AddComment from "./AddComment";
 
 const Comment = ({ comments, postId, userId }) => {
   const { auth } = useSelector((state) => state);

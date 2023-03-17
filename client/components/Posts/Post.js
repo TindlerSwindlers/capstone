@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { deletePost, addLikes } from '../../store/posts';
-import { setComments } from '../../store/comments';
-import { Link } from 'react-router-dom';
-import Comment from '../Comment';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deletePost, addLikes } from "../../store/posts";
+import { setComments } from "../../store/comments";
+import { Link } from "react-router-dom";
+import Comment from "../Comments/Comment";
 
 const Post = (props) => {
   const { id, text, likes, imageUrl, comments, user } = props.post;
@@ -43,7 +43,7 @@ const Post = (props) => {
         <span />
       )}
       <p>post :{text}</p>
-      <img src={imageUrl} width="300" height="300"></img>
+      <img src={imageUrl} width='300' height='300'></img>
       <p>from : {user.username}</p>
       <p>
         likes:{likes.length}

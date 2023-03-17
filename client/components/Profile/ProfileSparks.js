@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProfileHalfways } from "../store/halfways";
+import { fetchProfileHalfways } from "../../store/halfways";
 import { Link } from "react-router-dom";
 
 const ProfileSparks = ({ id }) => {
