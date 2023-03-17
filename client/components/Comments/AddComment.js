@@ -1,7 +1,7 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useForm } from 'react-hook-form';
-import { addComment } from '../store/comments';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import { addComment } from "../../store/comments";
 
 const AddComment = ({ postId, userId }) => {
   const dispatch = useDispatch();
@@ -18,9 +18,9 @@ const AddComment = ({ postId, userId }) => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="text">New comment: </label>
-        <input type="text" name="text" {...register('text')} />
-        <button className="btn btn-primary" type="submit">
+        <label htmlFor='text'>New comment: </label>
+        <input type='text' name='text' {...register("text")} />
+        <button className='btn btn-primary' type='submit'>
           Add comment
         </button>
       </form>

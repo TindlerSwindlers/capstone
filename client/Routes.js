@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { withRouter, Route, Switch } from 'react-router-dom';
-import { Login, Signup } from './components/AuthForm';
-import Homepage from './components/Homepage';
-import AddPost from './components/Posts/AddPost';
-import EditPost from './components/Posts/EditPost';
-import Profile from './components/Profile';
-import SingleProfile from './components/SingleProfile';
-import YourMatches from './components/YourMatches';
-import { me } from './store/auth';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter, Route, Switch } from "react-router-dom";
+import { Login, Signup } from "./components/AuthForm";
+import Homepage from "./components/Homepage";
+import AddPost from "./components/Posts/AddPost";
+import EditPost from "./components/Posts/EditPost";
+import Profile from "./components/Profile/Profile";
+import SingleProfile from "./components/Profile/SingleProfile";
+import YourMatches from "./components/Profile/YourMatches";
+import { me } from "./store/auth";
 
 /**
  * COMPONENT
@@ -25,19 +25,19 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route path="/home" component={Homepage} />
-            <Route exact path="/profile" component={Profile} />
-            <Route path="/profile/:id" component={SingleProfile} />
+            <Route path='/home' component={Homepage} />
+            <Route exact path='/profile' component={Profile} />
+            <Route path='/profile/:id' component={SingleProfile} />
             {/* <Redirect to="/home" /> */}
-            <Route path="/newpost" component={AddPost} />
-            <Route path="/editpost/:id" component={EditPost} />
-            <Route path="/yourMatches" component={YourMatches} />
+            <Route path='/newpost' component={AddPost} />
+            <Route path='/editpost/:id' component={EditPost} />
+            <Route path='/yourMatches' component={YourMatches} />
           </Switch>
         ) : (
           <Switch>
-            <Route path="/" exact component={Login} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
+            <Route path='/' exact component={Login} />
+            <Route path='/login' component={Login} />
+            <Route path='/signup' component={Signup} />
           </Switch>
         )}
       </div>

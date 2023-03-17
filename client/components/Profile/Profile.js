@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileForm from "./EditProfile";
-import { fetchProfileComments } from "../store/comments";
+import { fetchProfileComments } from "../../store/comments";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import ProfileSparks from "./ProfileSparks";

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { singleProfile } from "../store/auth";
+import { singleProfile } from "../../store/auth";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import { addHalfway, fetchProfileHalfways } from "../store/halfways";
+import { addHalfway, fetchProfileHalfways } from "../../store/halfways";
 import { useLocation } from "react-router-dom";
-import { addMatch } from "../store/matches";
+import { addMatch } from "../../store/matches";
 
 const SingleProfile = (props) => {
   const { auth } = useSelector((state) => state);

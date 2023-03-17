@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateProfile } from '../store/auth';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProfile } from "../../store/auth";
 
 const ProfileForm = () => {
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
-    username: '',
-    password: '',
-    name: '',
-    lastName: '',
+    username: "",
+    password: "",
+    name: "",
+    lastName: "",
     hobbies: [],
-    interest: '',
-    gender: '',
-    imageUrl: '',
+    interest: "",
+    gender: "",
+    imageUrl: "",
   });
 
   useEffect(() => {
@@ -41,12 +41,12 @@ const ProfileForm = () => {
   };
 
   return (
-    <div className="profile-form">
+    <div className='profile-form'>
       <label>
         <b>Username</b>
       </label>
       <input
-        name="username"
+        name='username'
         defaultValue={inputs.username}
         onChange={handleChange}
       />
@@ -54,8 +54,8 @@ const ProfileForm = () => {
         <b>Password</b>
       </label>
       <input
-        type="password"
-        name="password"
+        type='password'
+        name='password'
         defaultValue={inputs.password}
         onChange={handleChange}
       />
@@ -63,7 +63,7 @@ const ProfileForm = () => {
         <b>Frist Name</b>
       </label>
       <input
-        name="firstName"
+        name='firstName'
         defaultValue={inputs.name}
         onChange={handleChange}
       />
@@ -71,7 +71,7 @@ const ProfileForm = () => {
         <b>Last Name</b>
       </label>
       <input
-        name="lastName"
+        name='lastName'
         defaultValue={inputs.lastName}
         onChange={handleChange}
       />
@@ -79,7 +79,7 @@ const ProfileForm = () => {
         <b>Hobbies</b>
       </label>
       <input
-        name="hobbies"
+        name='hobbies'
         defaultValue={inputs.hobbies}
         onChange={handleChange}
       />
@@ -87,7 +87,7 @@ const ProfileForm = () => {
         <b>Interest</b>
       </label>
       <input
-        name="interest"
+        name='interest'
         defaultValue={inputs.interest}
         onChange={handleChange}
       />
@@ -95,7 +95,7 @@ const ProfileForm = () => {
         <b>Gender</b>
       </label>
       <input
-        name="gender"
+        name='gender'
         defaultValue={inputs.gender}
         onChange={handleChange}
       />
@@ -103,7 +103,7 @@ const ProfileForm = () => {
         <b>Profile Picture</b>
       </label>
       <input
-        name="iamgeUrl"
+        name='iamgeUrl'
         defaultValue={inputs.imageUrl}
         onChange={handleChange}
       />
