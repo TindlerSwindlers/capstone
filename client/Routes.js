@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter, Route, Switch } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Homepage from "./components/Homepage";
+import Messages from "./components/Messages/Messages";
 import AddPost from "./components/Posts/AddPost";
 import EditPost from "./components/Posts/EditPost";
 import Profile from "./components/Profile/Profile";
@@ -32,6 +33,8 @@ class Routes extends Component {
             <Route path='/newpost' component={AddPost} />
             <Route path='/editpost/:id' component={EditPost} />
             <Route path='/yourMatches' component={YourMatches} />
+            <Route path='/messages' component={Messages} />
+
           </Switch>
         ) : (
           <Switch>

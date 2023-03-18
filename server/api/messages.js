@@ -7,7 +7,10 @@ const {
 router.get('/', async (req, res, next) => {
     try {
       const messages = await Message.findAll({
-        include: [{ model: User }],
+        include: [
+          { model: User, as: "userReceiving"},
+          { model: User, as: "userSending"},
+        ],
         order: [['updatedAt', 'DESC']],
       });
       res.json(messages);
@@ -18,8 +21,14 @@ router.get('/', async (req, res, next) => {
 
   router.get('/:id', async (req, res, next) => {
     try {
-      const messages = await Message.findByPk(req.params.id, {
-        include: [{ User }],
+      let messages = await Message.findAll({
+        where: {
+          userReceivingId: req.params.id,
+        },
+        include: [
+          { model: User, as: "userReceiving"},
+          { model: User, as: "userSending"},
+        ],
         order: [['updatedAt', 'DESC']],
     })
       res.json(messages);
@@ -39,3 +48,5 @@ router.get('/', async (req, res, next) => {
       next(err);
     }
   });
+
+  module.exports = router;

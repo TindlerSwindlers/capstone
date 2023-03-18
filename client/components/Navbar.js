@@ -15,6 +15,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Link to="/newpost">New Post</Link>
           <Link to="/profile">Profile</Link>
           <Link to="/yourMatches">Your Matches</Link>
+          <Link to="/messages">Messages</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>

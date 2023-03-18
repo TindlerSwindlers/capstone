@@ -8,7 +8,8 @@ const Comment = require("./models/Comment");
 const Match = require("./models/Match");
 const Halfway = require("./models/Halfway");
 const UserMatch = require("./models/UserMatch");
-const Message = require("./models/Message")
+const Message = require("./models/Message");
+const UserMessage = require("./models/UserMessage");
 
 //associations could go here!
 Post.belongsTo(User);
@@ -38,8 +39,11 @@ User.hasMany(UserMatch);
 UserMatch.belongsTo(Match);
 Match.hasMany(UserMatch);
 
-Message.belongsTo(User);
-User.hasMany(Message);
+Message.belongsTo(User, {as: "userReceiving"});
+Message.belongsTo(User, {as: "userSending"});
+
+UserMessage.belongsTo(User);
+User.hasMany(UserMessage);
 
 module.exports = {
   db,
@@ -50,6 +54,7 @@ module.exports = {
     Match,
     Halfway,
     UserMatch,
-    Message
+    Message,
+    UserMessage,
   },
 };
