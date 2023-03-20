@@ -36,17 +36,33 @@ const AuthForm = (props) => {
     hobbies: [],
     interest: '',
     gender: '',
-    imageUrl: '../../no-image-icon.png',
+    imageUrl: '',
+    myImage: {},
   });
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    dispatch(authenticate(inputs));
+    const formData = new FormData();
+    formData.append('formName', inputs.formName);
+    formData.append('username', inputs.username);
+    formData.append('password', inputs.password);
+    formData.append('name', inputs.name);
+    formData.append('lastName', inputs.lastName);
+    formData.append('hobbies', inputs.hobbies);
+    formData.append('interest', inputs.interest);
+    formData.append('gender', inputs.gender);
+    formData.append('imageUrl', inputs.imageUrl);
+    formData.append('myImage', inputs.myImage);
+    dispatch(authenticate(formData));
   };
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
     setInputs({ ...inputs, [name]: value });
+  };
+
+  const handleFileUpload = (e) => {
+    setInputs({ ...inputs, myImage: e.target.files[0] });
   };
 
   return (
@@ -130,6 +146,13 @@ const AuthForm = (props) => {
                 ))}
               </Select>
             </FormControl>
+            <input
+              type="file"
+              label="Image"
+              name="myImage"
+              accept=".jpeg, .png, .jpg"
+              onChange={handleFileUpload}
+            />
           </Box>
         ) : (
           <span />
