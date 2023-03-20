@@ -3,9 +3,7 @@ const db = require('../db');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-
 const SALT_ROUNDS = process.env.SALT_ROUNDS || 5;
-
 
 const User = db.define('user', {
   username: {
@@ -13,8 +11,8 @@ const User = db.define('user', {
     unique: true,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
+      notEmpty: true,
+    },
   },
   name: {
     type: Sequelize.STRING,
@@ -24,6 +22,10 @@ const User = db.define('user', {
   },
   password: {
     type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
   },
   imageUrl: {
     type: Sequelize.TEXT,
@@ -40,8 +42,6 @@ const User = db.define('user', {
     defaultValue: [],
   },
 });
-
-
 
 /**
  * instanceMethods
@@ -96,6 +96,5 @@ const hashPassword = async (user) => {
 User.beforeCreate(hashPassword);
 User.beforeUpdate(hashPassword);
 User.beforeBulkCreate((users) => Promise.all(users.map(hashPassword)));
-
 
 module.exports = User;
