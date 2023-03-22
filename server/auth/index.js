@@ -48,9 +48,10 @@ router.post('/signup', upload.single('myImage'), async (req, res, next) => {
     } else {
       imageName = 'no-image-icon.png';
     }
+    const hobbies = req.body.hobbies.split(',');
     const user = await User.create({
       ...req.body,
-      hobbies: [req.body.hobbies],
+      hobbies: hobbies,
       imageUrl: imageName,
     });
     res.send({ token: await user.generateToken() });
@@ -71,10 +72,21 @@ router.get('/me', async (req, res, next) => {
   }
 });
 
-router.put('/me', async (req, res, next) => {
+router.put('/me', upload.single('myImage'), async (req, res, next) => {
   try {
     const user = await User.findByToken(req.headers.authorization);
-    await user.update(req.body);
+    let imageName = '';
+    if (req.file) {
+      imageName = req.file.filename;
+    } else {
+      imageName = req.body.imageUrl;
+    }
+    const hobbies = req.body.hobbies.split(',');
+    await user.update({
+      ...req.body,
+      hobbies: hobbies,
+      imageUrl: imageName,
+    });
     res.json(user);
   } catch (err) {
     console.log(err);

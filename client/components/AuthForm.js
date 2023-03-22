@@ -9,6 +9,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
+import Input from '@mui/material/Input';
 /**
  * COMPONENT
  */
@@ -22,6 +23,7 @@ const hobbies = [
   'Movie',
   'Coffee',
   'Book',
+  'Skiing',
 ];
 
 const AuthForm = (props) => {
@@ -146,7 +148,7 @@ const AuthForm = (props) => {
                 ))}
               </Select>
             </FormControl>
-            <input
+            <Input
               type="file"
               label="Image"
               name="myImage"
