@@ -5,7 +5,6 @@ import { logout } from '../store/auth';
 import Avatar from '@mui/material/Avatar';
 
 const Navbar = ({ handleClick, isLoggedIn, auth }) => {
-  console.log(auth);
   return (
     <div>
       <h1>Welcome to Spark!</h1>
