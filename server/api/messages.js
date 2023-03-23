@@ -19,6 +19,17 @@ router.get('/', async (req, res, next) => {
     }
   });
 
+  router.post('/', async (req, res, next) => {
+    try {
+     const newMessage = await Message.create({
+        ...req.body
+     })
+      res.json(newMessage);
+    } catch (err) {
+      next(err);
+    }
+  });
+
   router.get('/:id', async (req, res, next) => {
     try {
       let messages = await Message.findAll({
@@ -37,16 +48,6 @@ router.get('/', async (req, res, next) => {
     }
   });
 
-  router.post('/:id', async (req, res, next) => {
-    try {
-     const newMessage = Message.create({
-        ...req.body,
-        userId: req.params.id
-     })
-      res.json(newMessage);
-    } catch (err) {
-      next(err);
-    }
-  });
+
 
   module.exports = router;
