@@ -22,7 +22,6 @@ const EditPost = (props) => {
       imageUrl: props.location.state.post.imageUrl,
     });
   }, []);
-  console.log(inputs);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputs.text === '') {

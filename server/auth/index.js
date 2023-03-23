@@ -77,7 +77,7 @@ router.put('/me', upload.single('myImage'), async (req, res, next) => {
     const user = await User.findByToken(req.headers.authorization);
     let imageName = '';
     if (req.file) {
-      imageName = req.file.filename;
+      imageName = '../../' + req.file.filename;
     } else {
       imageName = req.body.imageUrl;
     }
