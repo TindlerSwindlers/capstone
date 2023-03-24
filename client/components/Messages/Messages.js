@@ -17,7 +17,7 @@ const Messages = () => {
     return (
         <div>
             <MessageResponse />
-            <MessageDisplay messages={messages} />
+            <MessageDisplay messages={messages} auth={auth} />
         </div>
     )
     

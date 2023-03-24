@@ -2,18 +2,35 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 
-const MessageDisplay = ({ messages }) => {
-console.log(messages)
-const [userProfile, setUserProfile] = useState({
-    username: "",
-    imageUrl: "",
-    messages: []
-});
+const MessageDisplay = ({ messages, auth }) => {
 
-    messages.map((message) => {
-        console.log(message)    
+    let users = [];
+    let userMessages = [];
+    
+    messages.filter(message => message.userSendingId !== auth.id).map(message => !users.includes(message.userSending.username) ? users.push(message.userSending.username) : null)
+
+    users.map((user) => {
+        const newUser = {};
+        newUser["username"] = user
+        userMessages.push(newUser)    
     })
 
+    for (let y = 0; y < userMessages.length; y++) {
+      for (let i = 0; i < messages.length; i++) {
+        if (messages[i].userSending.username === userMessages[y].username) {
+           userMessages[messages[i].createdAt] = messages[i].text
+    }
+   }
+}
+
+   console.log(userMessages)
+
+
+
+
+
+   
+ 
 
     return (
         <div>
