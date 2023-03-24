@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { Typography } from "@mui/material";
 
 const AddPost = () => {
   const { auth } = useSelector((state) => state);
@@ -40,12 +41,14 @@ const AddPost = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-around",
+        justifyContent: "center",
         width: "60%",
         height: "10rem",
         padding: "1rem",
+        paddingLeft: "19rem",
       }}
     >
+      <Typography>Create your new post</Typography>
       <TextField id='text' label='text' name='text' onChange={handleChange} />
       <input
         type='file'
