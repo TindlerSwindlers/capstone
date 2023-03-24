@@ -6,6 +6,8 @@ import Paper from "@mui/material/Paper";
 import { addHalfway, fetchProfileHalfways } from "../../store/halfways";
 import { useLocation } from "react-router-dom";
 import { addMatch } from "../../store/matches";
+import { Button } from "@mui/material";
+import FlashOnIcon from "@material-ui/icons/FlashOn";
 
 const SingleProfile = (props) => {
   const { auth } = useSelector((state) => state);
@@ -41,11 +43,23 @@ const SingleProfile = (props) => {
       </h1>
       <img src={imageUrl}></img>
       {from === "halfways" ? (
-        <button onClick={changeSpark}>Send a spark back!!!</button>
+        <Button
+          onClick={changeSpark}
+          variant='contained'
+          sx={{ backgroundColor: "#ffff00", color: "black" }}
+        >
+          <FlashOnIcon />
+          Send a spark back!!!
+        </Button>
       ) : (
-        <button onClick={() => dispatch(addHalfway(auth.id, id))}>
+        <Button
+          onClick={() => dispatch(addHalfway(auth.id, id))}
+          variant='contained'
+          sx={{ backgroundColor: "#ffff00", color: "black" }}
+        >
+          <FlashOnIcon />
           Send them a spark!
-        </button>
+        </Button>
       )}
       <Paper sx={{ padding: "1rem", margin: "1rem", background: "#FDEDEC" }}>
         <p>Hobbies: {hobbies ? hobbies.join(", ") : ""}</p>
