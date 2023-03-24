@@ -41,6 +41,7 @@ const Post = (props) => {
     <div>
       <Card
         sx={{
+          borderRadius: 4,
           width: 400,
           margin: 1,
           padding: 1,

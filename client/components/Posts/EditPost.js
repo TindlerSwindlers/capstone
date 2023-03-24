@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { editPost } from '../../store/posts';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import { Box, Input, TextField, Button, Typography } from '@mui/material';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 
 const EditPost = (props) => {
@@ -48,34 +46,42 @@ const EditPost = (props) => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-around',
-        width: '60%',
-        height: '10rem',
-        padding: '1rem',
+        alignItems: 'center',
       }}
     >
-      <TextField
-        id="text"
-        label="text"
-        name="text"
-        value={inputs.text}
-        onChange={handleChange}
-      />
-      <input
-        type="file"
-        label="Image"
-        name="myImage"
-        accept=".jpeg, .png, .jpg"
-        defaultValue={inputs.imageUrl}
-        onChange={handleFileUpload}
-      />
-      <Button
-        variant="contained"
-        endIcon={<BorderColorIcon />}
-        onClick={handleSubmit}
+      <Box
+        sx={{
+          width: '50%',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
       >
-        Save
-      </Button>
+        <TextField
+          sx={{ margin: 1, backgroundColor: 'white' }}
+          id="text"
+          label="text"
+          name="text"
+          value={inputs.text}
+          onChange={handleChange}
+        />
+        <Typography variant="h6">Want edit picture?</Typography>
+        <Input
+          sx={{ margin: 1 }}
+          type="file"
+          label="Image"
+          name="myImage"
+          accept=".jpeg, .png, .jpg"
+          defaultValue={inputs.imageUrl}
+          onChange={handleFileUpload}
+        />
+        <Button
+          variant="contained"
+          endIcon={<BorderColorIcon />}
+          onClick={handleSubmit}
+        >
+          Save
+        </Button>
+      </Box>
     </Box>
   );
 };
