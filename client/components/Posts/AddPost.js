@@ -38,27 +38,40 @@ const AddPost = () => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-around',
-        width: '60%',
-        height: '10rem',
-        padding: '1rem',
+        alignItems: 'center',
       }}
     >
-      <TextField id="text" label="text" name="text" onChange={handleChange} />
-      <input
-        type="file"
-        label="Image"
-        name="myImage"
-        accept=".jpeg, .png, .jpg"
-        onChange={handleFileUpload}
-      />
-      <Button
-        variant="contained"
-        endIcon={<BorderColorIcon />}
-        onClick={handleSubmit}
+      <Box
+        sx={{
+          width: '50%',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
       >
-        Post
-      </Button>
+        <TextField
+          sx={{ margin: 1, backgroundColor: 'white' }}
+          id="text"
+          label="text"
+          name="text"
+          onChange={handleChange}
+        />
+        <Typography variant="h6">Want show picture?</Typography>
+        <Input
+          sx={{ margin: 1 }}
+          type="file"
+          label="Image"
+          name="myImage"
+          accept=".jpeg, .png, .jpg"
+          onChange={handleFileUpload}
+        />
+        <Button
+          variant="contained"
+          endIcon={<BorderColorIcon />}
+          onClick={handleSubmit}
+        >
+          Post
+        </Button>
+      </Box>
     </Box>
   );
 };

@@ -95,14 +95,14 @@ const ProfileForm = () => {
       <Typography variant="h5">Edit Your Profile</Typography>
       <Box>
         <TextField
-          sx={{ margin: 1 }}
+          sx={{ margin: 1, backgroundColor: 'white' }}
           label="Username"
           name="username"
           value={inputs.username}
           onChange={handleChange}
         />
         <TextField
-          sx={{ margin: 1 }}
+          sx={{ margin: 1, backgroundColor: 'white' }}
           type="password"
           label="Password"
           name="password"
@@ -112,14 +112,14 @@ const ProfileForm = () => {
       </Box>
       <Box>
         <TextField
-          sx={{ margin: 1 }}
+          sx={{ margin: 1, backgroundColor: 'white' }}
           label="FirstName"
           name="name"
           value={inputs.name}
           onChange={handleChange}
         />
         <TextField
-          sx={{ margin: 1 }}
+          sx={{ margin: 1, backgroundColor: 'white' }}
           label="LastName"
           name="lastName"
           value={inputs.lastName}
@@ -127,7 +127,9 @@ const ProfileForm = () => {
         />
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <FormControl sx={{ minWidth: 195, margin: 1 }}>
+        <FormControl
+          sx={{ minWidth: 195, margin: 1, backgroundColor: 'white' }}
+        >
           <InputLabel>Gender</InputLabel>
           <Select name="gender" onChange={handleChange} value={inputs.gender}>
             <MenuItem value="male">Male</MenuItem>
@@ -135,7 +137,9 @@ const ProfileForm = () => {
             <MenuItem value="other">Other</MenuItem>
           </Select>
         </FormControl>
-        <FormControl sx={{ minWidth: 195, margin: 1 }}>
+        <FormControl
+          sx={{ minWidth: 195, margin: 1, backgroundColor: 'white' }}
+        >
           <InputLabel>Interest</InputLabel>
           <Select
             name="interest"
@@ -152,6 +156,7 @@ const ProfileForm = () => {
         <FormControl sx={{ minWidth: 400, margin: 1 }}>
           <InputLabel>Hobbies</InputLabel>
           <Select
+            sx={{ backgroundColor: 'white' }}
             name="hobbies"
             onChange={handleChange}
             value={inputs.hobbies}

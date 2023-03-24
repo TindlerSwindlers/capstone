@@ -57,7 +57,7 @@ const EditPost = (props) => {
         }}
       >
         <TextField
-          sx={{ margin: 1 }}
+          sx={{ margin: 1, backgroundColor: 'white' }}
           id="text"
           label="text"
           name="text"
