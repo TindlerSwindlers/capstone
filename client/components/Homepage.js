@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchPosts } from '../store/posts';
-import Post from './Posts/Post';
-import RecommendedProfiles from './Profile/RecommendedProfiles';
-import Box from '@mui/material/Box';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchPosts } from "../store/posts";
+import Post from "./Posts/Post";
+import RecommendedProfiles from "./Profile/RecommendedProfiles";
+import Box from "@mui/material/Box";
 
 export const Homepage = () => {
   const { posts } = useSelector((state) => state);
@@ -18,9 +18,9 @@ export const Homepage = () => {
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
       }}
     >
       <h3>Welcome, {auth.name}</h3>

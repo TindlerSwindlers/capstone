@@ -11,22 +11,9 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 
-const useStyles = makeStyles(() => ({
-  link: {
-    textDecoration: "none",
-    color: "black",
-    fontSize: "20px",
-  },
-  icon: {
-    color: "#3498DB",
-  },
-}));
-
 const Navbar = ({ handleClick, isLoggedIn, auth }) => {
-  const classes = useStyles();
   const [openDrawer, setOpenDrawer] = useState(false);
   return (
     <div>
@@ -69,27 +56,50 @@ const Navbar = ({ handleClick, isLoggedIn, auth }) => {
             </Drawer>
             <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
               <MenuIcon />
-              <Typography> Menu</Typography>
+              <Typography
+                sx={{ color: "black", fontSize: 22, fontFamily: "verdana" }}
+              >
+                {" "}
+                Menu
+              </Typography>
             </IconButton>
           </>
         ) : (
-          // <div>
-          //   {/* The navbar will show these links after you log in */}
-
-          //   <Link to='/home'>Home</Link>
-          //   <Link to='/newpost'>New Post</Link>
-          //   <Link to='/yourMatches'>Your Matches</Link>
-          //   <Link to='/profile'>
-          //     <Avatar alt={auth.name} src={auth.imageUrl} />
-          //   </Link>
-          //   <a href='#' onClick={handleClick}>
-          //     Logout
-          //   </a>
-          // </div>
-          <div>
-            {/* The navbar will show these links before you log in */}
-            <Link to='/login'>Login</Link>
-            <Link to='/signup'>Sign Up</Link>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <List
+              sx={{
+                display: "flex",
+                height: 30,
+                marginTop: 5,
+                backgroundColor: "#3498DB",
+                "&:hover": {
+                  backgroundColor: "primary.main",
+                  opacity: [0.9, 0.8, 0.7],
+                },
+                borderRadius: "16px",
+                color: "black",
+              }}
+            >
+              <ListItem>
+                <ListItemText>
+                  <Link to='/login'>
+                    <Typography sx={{ color: "black" }}>Login</Typography>
+                  </Link>
+                </ListItemText>
+              </ListItem>
+              <ListItem>
+                <ListItemText>
+                  <Link to='/signup'>
+                    <Typography sx={{ color: "black" }}>Sign Up</Typography>
+                  </Link>
+                </ListItemText>
+              </ListItem>
+            </List>
           </div>
         )}
       </nav>
@@ -98,9 +108,6 @@ const Navbar = ({ handleClick, isLoggedIn, auth }) => {
   );
 };
 
-/**
- * CONTAINER
- */
 const mapState = (state) => {
   return {
     auth: state.auth,

@@ -109,6 +109,12 @@ const AuthForm = (props) => {
             sx={{
               display: "flex",
               flexDirection: "column",
+              backgroundColor: "#3498DB",
+              "&:hover": {
+                backgroundColor: "primary.main",
+                opacity: [0.9, 0.8, 0.7],
+              },
+              borderRadius: "16px",
             }}
           >
             <Box sx={{ marginLeft: 0 }}>
@@ -187,13 +193,6 @@ const AuthForm = (props) => {
   );
 };
 
-/**
- * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
- */
 const mapLogin = (state) => {
   return {
     formName: "login",
