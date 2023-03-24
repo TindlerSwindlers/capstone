@@ -41,7 +41,7 @@ const Profile = () => {
         <ProfileSparks id={auth.id} />
         <Paper
           sx={{
-            width: '60%',
+            width: '50%',
             padding: '1rem',
             margin: '1rem',
             background: '#FDEDEC',
@@ -53,7 +53,7 @@ const Profile = () => {
         </Paper>
         <Paper
           sx={{
-            width: '60%',
+            width: '50%',
             padding: '1rem',
             margin: '1rem',
             background: '#FADBD8',
@@ -68,7 +68,7 @@ const Profile = () => {
         </Paper>
         <Paper
           sx={{
-            width: '60%',
+            width: '50%',
             padding: '1rem',
             margin: '1rem',
             background: '#F2D7D5',
@@ -79,7 +79,6 @@ const Profile = () => {
             ? profilePosts.map((post) => <div key={post.id}>{post.text}</div>)
             : ''}
         </Paper>
-        <h3>Edit Your Profile</h3>
         <ProfileForm />
       </Box>
     );

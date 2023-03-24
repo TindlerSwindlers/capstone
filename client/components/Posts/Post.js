@@ -40,7 +40,13 @@ const Post = (props) => {
   return (
     <div>
       <Card
-        sx={{ width: 400, margin: 1, padding: 1, backgroundColor: '#E8F6F3' }}
+        sx={{
+          borderRadius: 4,
+          width: 400,
+          margin: 1,
+          padding: 1,
+          backgroundColor: '#E8F6F3',
+        }}
       >
         <Box
           sx={{

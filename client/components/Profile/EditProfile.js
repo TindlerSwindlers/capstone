@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateProfile } from '../../store/auth';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import Input from '@mui/material/Input';
+import {
+  TextField,
+  Button,
+  Box,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Input,
+  Typography,
+} from '@mui/material';
 /**
  * COMPONENT
  */
@@ -80,32 +83,43 @@ const ProfileForm = () => {
   };
 
   return (
-    <div className="profile-form">
+    <Box
+      className="profile-form"
+      sx={{
+        width: '50%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <Typography variant="h5">Edit Your Profile</Typography>
       <Box>
         <TextField
-          sx={{ margin: 1 }}
+          sx={{ margin: 1, backgroundColor: 'white' }}
           label="Username"
           name="username"
           value={inputs.username}
           onChange={handleChange}
         />
         <TextField
-          sx={{ margin: 1 }}
+          sx={{ margin: 1, backgroundColor: 'white' }}
           type="password"
           label="Password"
           name="password"
           value={inputs.password}
           onChange={handleChange}
         />
+      </Box>
+      <Box>
         <TextField
-          sx={{ margin: 1 }}
+          sx={{ margin: 1, backgroundColor: 'white' }}
           label="FirstName"
           name="name"
           value={inputs.name}
           onChange={handleChange}
         />
         <TextField
-          sx={{ margin: 1 }}
+          sx={{ margin: 1, backgroundColor: 'white' }}
           label="LastName"
           name="lastName"
           value={inputs.lastName}
@@ -113,7 +127,9 @@ const ProfileForm = () => {
         />
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <FormControl sx={{ minWidth: 120, margin: 1 }}>
+        <FormControl
+          sx={{ minWidth: 195, margin: 1, backgroundColor: 'white' }}
+        >
           <InputLabel>Gender</InputLabel>
           <Select name="gender" onChange={handleChange} value={inputs.gender}>
             <MenuItem value="male">Male</MenuItem>
@@ -121,7 +137,9 @@ const ProfileForm = () => {
             <MenuItem value="other">Other</MenuItem>
           </Select>
         </FormControl>
-        <FormControl sx={{ minWidth: 120, margin: 1 }}>
+        <FormControl
+          sx={{ minWidth: 195, margin: 1, backgroundColor: 'white' }}
+        >
           <InputLabel>Interest</InputLabel>
           <Select
             name="interest"
@@ -133,9 +151,12 @@ const ProfileForm = () => {
             <MenuItem value="other">Other</MenuItem>
           </Select>
         </FormControl>
-        <FormControl sx={{ minWidth: 120, margin: 1 }}>
+      </Box>
+      <Box>
+        <FormControl sx={{ minWidth: 400, margin: 1 }}>
           <InputLabel>Hobbies</InputLabel>
           <Select
+            sx={{ backgroundColor: 'white' }}
             name="hobbies"
             onChange={handleChange}
             value={inputs.hobbies}
@@ -148,7 +169,11 @@ const ProfileForm = () => {
             ))}
           </Select>
         </FormControl>
+      </Box>
+      <Box>
+        <Typography variant="h6">Change profile picture?</Typography>
         <Input
+          sx={{ minWidth: 380, margin: 1 }}
           type="file"
           label="Image"
           name="myImage"
@@ -163,7 +188,7 @@ const ProfileForm = () => {
       >
         Edit
       </Button>
-    </div>
+    </Box>
   );
 };
 
