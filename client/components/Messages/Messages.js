@@ -16,8 +16,9 @@ const Messages = () => {
 
     return (
         <div>
-            <MessageResponse />
             <MessageDisplay messages={messages} auth={auth} />
+            <MessageResponse />
+           
         </div>
     )
     

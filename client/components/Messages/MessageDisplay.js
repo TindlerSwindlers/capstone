@@ -5,49 +5,41 @@ import { Link } from "react-router-dom";
 const MessageDisplay = ({ messages, auth }) => {
 
     let users = [];
-    let userMessages = [];
+    let userMessages = {};
+
+  
     
-    messages.filter(message => message.userSendingId !== auth.id).map(message => !users.includes(message.userSending.username) ? users.push(message.userSending.username) : null)
+    messages.filter(message => message.userSendingId !== auth.id).map(message => !users.some(e => e.username === message.userSending.username) ? users.push(message.userSending) : null)
 
-    users.map((user) => {
-        const newUser = {};
-        newUser["username"] = user
-        userMessages.push(newUser)    
-    })
-
-    for (let y = 0; y < userMessages.length; y++) {
+    for (let y = 0; y < users.length; y++) {
       for (let i = 0; i < messages.length; i++) {
-        if (messages[i].userSending.username === userMessages[y].username) {
+        if (messages[i].userSending.username === users[y].username) {
            userMessages[messages[i].createdAt] = messages[i].text
+           users["usersMessages"] = userMessages
+
     }
    }
-}
-
-   console.log(userMessages)
-
-
-
-
-
-   
  
+}
 
     return (
         <div>
-            {/* {
-               messageUsers.map((user) => {
+            {
+               users.map((user) => {
                     return (
-                        <div>
-                           <Link to={`/profile/${user}`}></Link>
-                           <br></br><br></br>
+                        <div key={user.id}>
+                          <p>{user.name} {user.lastName}</p>
                            <img src={user.imageUrl}></img>
+                           <br></br><br></br>
+                          Messages: <pre> {JSON.stringify(userMessages, null, 2)} </pre>
                         </div>
                     )
                 }) 
             }
           
                 <div>
-            </div> */}
+               
+            </div>
         </div>
     )
     
@@ -56,15 +48,3 @@ const MessageDisplay = ({ messages, auth }) => {
 
 export default MessageDisplay;
 
-{/* <div>
-{messages[0] ? (
- messages.map((message) => 
-     <div key={message.id}>
-      <Link to={{
-          pathname: `/profile/${message.userSending.id}`
-      }}>{message.userSending.name} {message.userSending.lastName}</Link>
-      <br></br><br></br>
-      <img src={message.userSending.imageUrl}></img>
-      <p>{message.text}</p>
-      <button>Reply</button>
-     </div> */}
