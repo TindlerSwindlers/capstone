@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateProfile } from "../../store/auth";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateProfile } from '../../store/auth';
 import {
   TextField,
   Button,
@@ -11,35 +11,35 @@ import {
   InputLabel,
   Input,
   Typography,
-} from "@mui/material";
+} from '@mui/material';
 /**
  * COMPONENT
  */
 const hobbies = [
-  "Wine",
-  "Fishing",
-  "Music",
-  "Cooking",
-  "Hiking",
-  "Chatting",
-  "Movie",
-  "Coffee",
-  "Book",
-  "Skiing",
+  'Wine',
+  'Fishing',
+  'Music',
+  'Cooking',
+  'Hiking',
+  'Chatting',
+  'Movie',
+  'Coffee',
+  'Book',
+  'Skiing',
 ];
 
 const ProfileForm = () => {
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
-    username: "",
-    password: "",
-    name: "",
-    lastName: "",
+    username: '',
+    password: '',
+    name: '',
+    lastName: '',
     hobbies: [],
-    interest: "",
-    gender: "",
-    imageUrl: "",
+    interest: '',
+    gender: '',
+    imageUrl: '',
     myImage: {},
   });
 
@@ -65,16 +65,16 @@ const ProfileForm = () => {
 
   const handleSubmit = () => {
     const formData = new FormData();
-    formData.append("formName", inputs.formName);
-    formData.append("username", inputs.username);
-    formData.append("password", inputs.password);
-    formData.append("name", inputs.name);
-    formData.append("lastName", inputs.lastName);
-    formData.append("hobbies", inputs.hobbies);
-    formData.append("interest", inputs.interest);
-    formData.append("gender", inputs.gender);
-    formData.append("imageUrl", inputs.imageUrl);
-    formData.append("myImage", inputs.myImage);
+    formData.append('formName', inputs.formName);
+    formData.append('username', inputs.username);
+    formData.append('password', inputs.password);
+    formData.append('name', inputs.name);
+    formData.append('lastName', inputs.lastName);
+    formData.append('hobbies', inputs.hobbies);
+    formData.append('interest', inputs.interest);
+    formData.append('gender', inputs.gender);
+    formData.append('imageUrl', inputs.imageUrl);
+    formData.append('myImage', inputs.myImage);
     dispatch(updateProfile(formData));
   };
 
@@ -84,71 +84,72 @@ const ProfileForm = () => {
 
   return (
     <Box
-      className='profile-form'
+      className="profile-form"
       sx={{
-        width: "50%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        borderRadius: 2,
       }}
     >
-      <Typography variant='h5'>Edit Your Profile</Typography>
+      <Typography variant="h5">Edit Your Profile</Typography>
       <Box>
         <TextField
-          sx={{ margin: 1, backgroundColor: "white" }}
-          label='Username'
-          name='username'
+          sx={{ margin: 1, backgroundColor: 'white' }}
+          label="Username"
+          name="username"
           value={inputs.username}
           onChange={handleChange}
         />
         <TextField
-          sx={{ margin: 1, backgroundColor: "white" }}
-          type='password'
-          label='Password'
-          name='password'
+          sx={{ margin: 1, backgroundColor: 'white' }}
+          type="password"
+          label="Password"
+          name="password"
           value={inputs.password}
           onChange={handleChange}
         />
       </Box>
       <Box>
         <TextField
-          sx={{ margin: 1, backgroundColor: "white" }}
-          label='FirstName'
-          name='name'
+          sx={{ margin: 1, backgroundColor: 'white' }}
+          label="FirstName"
+          name="name"
           value={inputs.name}
           onChange={handleChange}
         />
         <TextField
-          sx={{ margin: 1, backgroundColor: "white" }}
-          label='LastName'
-          name='lastName'
+          sx={{ margin: 1, backgroundColor: 'white' }}
+          label="LastName"
+          name="lastName"
           value={inputs.lastName}
           onChange={handleChange}
         />
       </Box>
-      <Box sx={{ display: "flex", alignItems: "center" }}>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <FormControl
-          sx={{ minWidth: 195, margin: 1, backgroundColor: "white" }}
+          sx={{ minWidth: 195, margin: 1, backgroundColor: 'white' }}
         >
           <InputLabel>Gender</InputLabel>
-          <Select name='gender' onChange={handleChange} value={inputs.gender}>
-            <MenuItem value='male'>Male</MenuItem>
-            <MenuItem value='female'>Female</MenuItem>
-            <MenuItem value='other'>Other</MenuItem>
+          <Select name="gender" onChange={handleChange} value={inputs.gender}>
+            <MenuItem value="male">Male</MenuItem>
+            <MenuItem value="female">Female</MenuItem>
+            <MenuItem value="other">Other</MenuItem>
           </Select>
         </FormControl>
         <FormControl
-          sx={{ minWidth: 195, margin: 1, backgroundColor: "white" }}
+          sx={{ minWidth: 195, margin: 1, backgroundColor: 'white' }}
         >
           <InputLabel>Interest</InputLabel>
           <Select
-            name='interest'
+            name="interest"
             onChange={handleChange}
             value={inputs.interest}
           >
-            <MenuItem value='male'>Male</MenuItem>
-            <MenuItem value='female'>Female</MenuItem>
-            <MenuItem value='other'>Other</MenuItem>
+            <MenuItem value="male">Male</MenuItem>
+            <MenuItem value="female">Female</MenuItem>
+            <MenuItem value="other">Other</MenuItem>
           </Select>
         </FormControl>
       </Box>
@@ -156,8 +157,8 @@ const ProfileForm = () => {
         <FormControl sx={{ minWidth: 400, margin: 1 }}>
           <InputLabel>Hobbies</InputLabel>
           <Select
-            sx={{ backgroundColor: "white" }}
-            name='hobbies'
+            sx={{ backgroundColor: 'white' }}
+            name="hobbies"
             onChange={handleChange}
             value={inputs.hobbies}
             multiple={true}
@@ -171,20 +172,20 @@ const ProfileForm = () => {
         </FormControl>
       </Box>
       <Box>
-        <Typography variant='h6'>Change profile picture?</Typography>
+        <Typography variant="h6">Change profile picture?</Typography>
         <Input
           sx={{ minWidth: 380, margin: 1 }}
-          type='file'
-          label='Image'
-          name='myImage'
-          accept='.jpeg, .png, .jpg'
+          type="file"
+          label="Image"
+          name="myImage"
+          accept=".jpeg, .png, .jpg"
           onChange={handleFileUpload}
         />
       </Box>
       <Button
-        type='submit'
+        type="submit"
         onClick={handleSubmit}
-        sx={{ backgroundColor: "#3498DB", color: "#2C3E50", margin: 1 }}
+        sx={{ backgroundColor: '#3498DB', color: '#2C3E50', margin: 1 }}
       >
         Edit
       </Button>
