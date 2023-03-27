@@ -15,9 +15,11 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import ProfileSparks from './ProfileSparks';
 
+
 const Profile = () => {
   const { auth, comments, posts } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const [state, setState] = useState(false);
 
   useEffect(() => {
     dispatch(fetchProfileComments(auth.id));
@@ -119,7 +121,21 @@ const Profile = () => {
             ? profilePosts.map((post) => <div key={post.id}>{post.text}</div>)
             : ''}
         </Paper>
-        <ProfileForm />
+        {state ? (
+          <ProfileForm />
+        ) : (
+          <Button
+            variant='contained'
+            sx={{
+              backgroundColor: "#ffff00",
+              color: "black",
+              marginBottom: "10px",
+            }}
+            onClick={() => setState(true)}
+          >
+            Edit Your Profile
+          </Button>
+        )}
       </Box>
     );
   }

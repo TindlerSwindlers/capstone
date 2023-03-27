@@ -7,6 +7,7 @@ import { Card } from "@mui/material";
 const MessageResponse = () => {
   const auth = useSelector((state) => state);
   const dispatch = useDispatch();
+  const [state, setState] = useState(false);
   const [message, setMessage] = useState({
     text: "",
     userSendingId: "",
@@ -24,6 +25,7 @@ const MessageResponse = () => {
 
   const handleSend = (e) => {
     e.preventDefault();
+    setState(true);
     dispatch(sendMessage(message));
   };
 
@@ -40,8 +42,14 @@ const MessageResponse = () => {
         backgroundColor: "#FDEDEC",
       }}
     >
-      <TextField id='text' name='message' onChange={handleChange} />
-      <button onClick={handleSend}>Send Message</button>
+      {state ? (
+        <p>Message sent!</p>
+      ) : (
+        <div>
+          <TextField id='text' name='message' onChange={handleChange} />
+          <button onClick={handleSend}>Send Message</button>
+        </div>
+      )}
     </Card>
   );
 };

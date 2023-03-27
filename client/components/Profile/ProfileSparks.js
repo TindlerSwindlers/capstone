@@ -2,16 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfileHalfways } from "../../store/halfways";
 import { Link } from "react-router-dom";
-import {
-  Box,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Button,
-  Typography,
-  Avatar,
-} from "@mui/material";
+import { Box, Card, Typography } from "@mui/material";
 
 const ProfileSparks = ({ id }) => {
   const { halfways } = useSelector((state) => state);
