@@ -18,7 +18,6 @@ const MessageDisplay = ({ messages, auth }) => {
       if (messages[i].userSending?.username === users[y].username) {
         userMessages[messages[i].createdAt] = messages[i].text;
         users["usersMessages"] = userMessages;
-        console.log("USERMESSAGES", userMessages);
       }
     }
   }
