@@ -7,23 +7,16 @@ import Paper from "@mui/material/Paper";
 import ProfileSparks from "./ProfileSparks";
 
 const Profile = () => {
-  const { auth, comments } = useSelector((state) => state);
+  const { auth, comments, posts } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchProfileComments(auth.id));
   }, []);
 
-  const {
-    username,
-    name,
-    lastName,
-    hobbies,
-    interest,
-    gender,
-    imageUrl,
-    posts,
-  } = auth || {};
+  const { name, lastName, hobbies, interest, gender, imageUrl } = auth || {};
+
+  const profilePosts = posts.filter((post) => post.user.id === auth.id);
   if (auth.id) {
     return (
       <Box
@@ -46,32 +39,46 @@ const Profile = () => {
         </Box>
         <img src={imageUrl}></img>
         <ProfileSparks id={auth.id} />
-        <Paper sx={{ padding: "1rem", margin: "1rem", background: "#FDEDEC" }}>
+        <Paper
+          sx={{
+            width: "50%",
+            padding: "1rem",
+            margin: "1rem",
+            background: "#FDEDEC",
+          }}
+        >
           <p>Hobbies: {hobbies ? hobbies.join(", ") : ""}</p>
           <p>Interest: {interest}</p>
           <p>Gender: {gender}</p>
         </Paper>
-        <div>
-          <Paper
-            sx={{ padding: "1rem", margin: "1rem", background: "#FADBD8" }}
-          >
-            Comments:
-            {comments.comments
-              ? comments.comments.map((comment) => (
-                  <div key={comment.id}>{comment.text}</div>
-                ))
-              : ""}
-          </Paper>
-          <Paper
-            sx={{ padding: "1rem", margin: "1rem", background: "#F2D7D5" }}
-          >
-            Posts:
-            {posts
-              ? posts.map((post) => <div key={post.id}>{post.text}</div>)
-              : ""}
-          </Paper>
-        </div>
-        <h3>Edit Your Profile</h3>
+        <Paper
+          sx={{
+            width: "50%",
+            padding: "1rem",
+            margin: "1rem",
+            background: "#FADBD8",
+          }}
+        >
+          Comments:
+          {comments.comments
+            ? comments.comments.map((comment) => (
+                <div key={comment.id}>{comment.text}</div>
+              ))
+            : ""}
+        </Paper>
+        <Paper
+          sx={{
+            width: "50%",
+            padding: "1rem",
+            margin: "1rem",
+            background: "#F2D7D5",
+          }}
+        >
+          Posts:
+          {profilePosts
+            ? profilePosts.map((post) => <div key={post.id}>{post.text}</div>)
+            : ""}
+        </Paper>
         <ProfileForm />
       </Box>
     );

@@ -1,12 +1,15 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { useForm } from "react-hook-form";
-import { addComment } from "../../store/comments";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { addComment } from '../../store/comments';
+import { TextField, IconButton } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 
 const AddComment = ({ postId, userId }) => {
   const dispatch = useDispatch();
   const onSubmit = (data, event) => {
     event.preventDefault();
+    console.log(userId);
     dispatch(addComment(postId, userId, data));
     event.target.reset();
   };
@@ -16,15 +19,20 @@ const AddComment = ({ postId, userId }) => {
     formState: { errors },
   } = useForm();
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor='text'>New comment: </label>
-        <input type='text' name='text' {...register("text")} />
-        <button className='btn btn-primary' type='submit'>
-          Add comment
-        </button>
-      </form>
-    </div>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      style={{ display: 'flex', alignItems: 'center', margin: 1 }}
+    >
+      <TextField
+        label="Comment"
+        name="text"
+        {...register('text')}
+        sx={{ width: '50rem' }}
+      />
+      <IconButton type="submit">
+        <SendIcon />
+      </IconButton>
+    </form>
   );
 };
 

@@ -1,8 +1,17 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { fetchRecommended } from "../../store/auth";
-import Box from "@mui/material/Box";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { fetchRecommended } from '../../store/auth';
+import {
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Button,
+  Typography,
+  Avatar,
+} from '@mui/material';
 
 const RecommendedProfiles = ({ userId }) => {
   const { auth } = useSelector((state) => state);
@@ -15,34 +24,41 @@ const RecommendedProfiles = ({ userId }) => {
   return (
     <div>
       <p>Your recommended profiles:</p>
-      <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
         {auth.profiles &&
           auth.profiles.map((profile) => (
-            <Box
+            <Card
               key={profile.id}
               sx={{
-                padding: "1rem",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
+                borderRadius: 4,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                width: '200px',
+                margin: 1,
+                padding: 1,
+                backgroundColor: '#FDEDEC',
               }}
             >
               <Link
                 to={{
                   pathname: `/profile/${profile.id}`,
                   state: {
-                    from: "recommended",
+                    from: 'recommended',
                   },
                 }}
               >
-                {profile.name} {profile.lastName}
+                <Typography variant="body1" sx={{ margin: 1 }}>
+                  {profile.name} {profile.lastName}
+                </Typography>
               </Link>
-              <img
-                src={profile.imageUrl}
-                style={{ width: "200px", height: "200px" }}
+              <CardMedia
+                sx={{ width: '200px', height: '200px' }}
+                image={profile.imageUrl}
+                title="image"
               />
-              <p>Hobbies: {profile.hobbies.join(", ")}</p>
-            </Box>
+              <Typography>Loves {profile.hobbies.join(', ')}</Typography>
+            </Card>
           ))}
       </Box>
     </div>
