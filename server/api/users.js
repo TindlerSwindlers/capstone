@@ -9,7 +9,7 @@ router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
       include: [{ model: Post }, { model: Comment }],
-      attributes: ['id', 'username', 'interest'],
+      attributes: ['id', 'username', 'interest', 'imageUrl'],
     });
     res.json(users);
   } catch (err) {

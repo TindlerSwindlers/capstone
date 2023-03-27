@@ -5,6 +5,7 @@ const {
   models: { User, Post, Comment },
 } = require("../server/db");
 const Match = require("../server/db/models/Match");
+const Message = require("../server/db/models/Message");
 
 /**
  * seed - this function clears the database, updates tables to
@@ -112,6 +113,19 @@ async function seed() {
     Match.create({
       user1Id: laura.id,
       user2Id: cody.id,
+    }),
+  ]);
+
+  const [message1, message2] = await Promise.all([
+    Message.create({
+      text: "Hi",
+      userReceivingId: tiffany.id,
+      userSendingId: murphy.id,
+    }),
+    Message.create({
+      text: "Hello",
+      userReceivingId: laura.id,
+      userSendingId: cody.id,
     }),
   ]);
 

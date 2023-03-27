@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@material-ui/icons/Menu";
 
+
 const Navbar = ({ handleClick, isLoggedIn, auth }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
   return (
@@ -107,6 +108,7 @@ const Navbar = ({ handleClick, isLoggedIn, auth }) => {
     </div>
   );
 };
+
 
 const mapState = (state) => {
   return {

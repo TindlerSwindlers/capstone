@@ -6,8 +6,9 @@ import posts from './posts';
 import comments from './comments';
 import halfways from './halfways';
 import matches from './matches';
+import messages from './messages';
 
-const reducer = combineReducers({ auth, posts, comments, halfways, matches });
+const reducer = combineReducers({ auth, posts, comments, halfways, matches, messages });
 const middleware = applyMiddleware(
   thunkMiddleware,
   createLogger({ collapsed: true })
