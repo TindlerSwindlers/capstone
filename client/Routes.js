@@ -9,6 +9,7 @@ import EditPost from "./components/Posts/EditPost";
 import Profile from "./components/Profile/Profile";
 import SingleProfile from "./components/Profile/SingleProfile";
 import YourMatches from "./components/Profile/YourMatches";
+import NewMessage from "./components/messages/NewMessage";
 import { me } from "./store/auth";
 
 /**
@@ -29,12 +30,15 @@ class Routes extends Component {
             <Route path='/home' component={Homepage} />
             <Route exact path='/profile' component={Profile} />
             <Route path='/profile/:id' component={SingleProfile} />
-            {/* <Redirect to="/home" /> */}
             <Route path='/newpost' component={AddPost} />
             <Route path='/editpost/:id' component={EditPost} />
-            <Route path='/yourMatches' component={YourMatches} />
+            <Route exact path='/yourMatches' component={YourMatches} />
             <Route path='/messages' component={Messages} />
-
+            <Route
+              exact
+              path='/yourMatches/newMessage'
+              component={NewMessage}
+            />
           </Switch>
         ) : (
           <Switch>
