@@ -1,14 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileForm from "./EditProfile";
 import { fetchProfileComments } from "../../store/comments";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import ProfileSparks from "./ProfileSparks";
+import { Button } from "@mui/material";
 
 const Profile = () => {
   const { auth, comments, posts } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const [state, setState] = useState(false);
 
   useEffect(() => {
     dispatch(fetchProfileComments(auth.id));
@@ -79,7 +81,21 @@ const Profile = () => {
             ? profilePosts.map((post) => <div key={post.id}>{post.text}</div>)
             : ""}
         </Paper>
-        <ProfileForm />
+        {state ? (
+          <ProfileForm />
+        ) : (
+          <Button
+            variant='contained'
+            sx={{
+              backgroundColor: "#ffff00",
+              color: "black",
+              marginBottom: "10px",
+            }}
+            onClick={() => setState(true)}
+          >
+            Edit Your Profile
+          </Button>
+        )}
       </Box>
     );
   }
