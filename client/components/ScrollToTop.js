@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FaArrowCircleUp } from "react-icons/fa";
-// import { Button } from "@mui/material";
 import { Button } from "../../public/Styles";
 
 const ScrollButton = () => {
@@ -8,9 +7,9 @@ const ScrollButton = () => {
 
   const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop;
-    if (scrolled > 300) {
+    if (scrolled > 200) {
       setVisible(true);
-    } else if (scrolled <= 300) {
+    } else if (scrolled <= 200) {
       setVisible(false);
     }
   };
@@ -25,13 +24,12 @@ const ScrollButton = () => {
   window.addEventListener("scroll", toggleVisible);
 
   return (
-    <Button>
-      <FaArrowCircleUp
-        onClick={scrollToTop}
-        style={{
-          display: visible ? "inline" : "none",
-        }}
-      />
+    <Button
+      style={{
+        display: visible ? "inline" : "none",
+      }}
+    >
+      <FaArrowCircleUp onClick={scrollToTop} />
       Scroll to top
     </Button>
   );

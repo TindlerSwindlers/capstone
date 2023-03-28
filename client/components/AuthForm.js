@@ -10,9 +10,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Input from "@mui/material/Input";
-/**
- * COMPONENT
- */
+
 const hobbies = [
   "Wine",
   "Fishing",
