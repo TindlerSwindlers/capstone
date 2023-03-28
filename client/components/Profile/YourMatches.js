@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfileMatches } from "../../store/matches";
 import { Box, Card, CardMedia, Typography, Button } from "@mui/material";
-import { Link } from "react-router-dom";
 import NewMessage from "../messages/NewMessage";
 
 const YourMatches = () => {

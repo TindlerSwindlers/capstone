@@ -15,7 +15,7 @@ const MessageDisplay = ({ messages, auth }) => {
 
   for (let y = 0; y < users.length; y++) {
     for (let i = 0; i < messages.length; i++) {
-      if (messages[i].userSending?.username[0] === users[y].username) {
+      if (messages[i].userSending?.username === users[y].username) {
         userMessages[messages[i].createdAt] = messages[i].text;
         users["usersMessages"] = userMessages;
       }
@@ -49,7 +49,13 @@ const MessageDisplay = ({ messages, auth }) => {
                 title='image'
               />
               <Typography>
-                Messages: {JSON.stringify(userMessages, null, 2)}
+                Messages:
+                {Object.keys(userMessages).map((key) => (
+                  <p>
+                    {userMessages[key]} sent at{" "}
+                    {new Date(key).toLocaleDateString()}
+                  </p>
+                ))}
               </Typography>
             </Card>
           );
