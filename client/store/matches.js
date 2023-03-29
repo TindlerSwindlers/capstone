@@ -1,8 +1,10 @@
 import axios from "axios";
 
+//Action types
 const FETCH_MATCHES = "FETCH_MATCHES";
 const ADD_MATCH = "ADD_MATCH";
 
+//Thunk creators
 export const fetchProfileMatches = (id) => {
   return async (dispatch) => {
     const res = await axios.get(`/api/matches/${id}`);
@@ -26,6 +28,7 @@ export const addMatch = (user1, user2) => {
   };
 };
 
+//Reducer
 export default function (state = [], action) {
   switch (action.type) {
     case FETCH_MATCHES:

@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchMessages } from "../../store/messages";
-
-import MessageResponse from "./MessageResponse";
 import MessageDisplay from "./MessageDisplay";
 import { Card } from "@mui/material";
 
@@ -28,7 +26,6 @@ const Messages = () => {
       }}
     >
       <MessageDisplay messages={messages} auth={auth} />
-      <MessageResponse />
     </Card>
   );
 };

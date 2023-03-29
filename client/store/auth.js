@@ -3,25 +3,19 @@ import history from "../history";
 
 const TOKEN = "token";
 
-/**
- * ACTION TYPES
- */
+//Action types
 const SET_AUTH = "SET_AUTH";
 const UPDATE_PROFILE = "UPDATE_PROFILE";
 const DELTE_PROFILE = "DELETE_PROFILE";
 const GET_RECOMMENDED = "GET_RECOMMENDED";
 const SINGLE_PROFILE = "SINGLE_PROFILE";
 
-/**
- * ACTION CREATORS
- */
+//Action creators
 const setAuth = (auth) => ({ type: SET_AUTH, auth });
 const _getRecommended = (profiles) => ({ type: GET_RECOMMENDED, profiles });
 const _singleProfile = (profile) => ({ type: SINGLE_PROFILE, profile });
 
-/**
- * THUNK CREATORS
- */
+//Thunk creators
 export const me = () => async (dispatch) => {
   const token = window.localStorage.getItem(TOKEN);
   if (token) {
@@ -94,9 +88,7 @@ export const logout = () => {
   };
 };
 
-/**
- * REDUCER
- */
+//Reducer
 export default function (state = {}, action) {
   if (action.type === SET_AUTH || action.type === UPDATE_PROFILE) {
     return action.auth;

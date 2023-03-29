@@ -1,11 +1,14 @@
 import axios from "axios";
 
+//Action types
 const GET_MESSAGES = "GET_MESSAGES";
 const SEND_MESSAGE = "SEND_MESSAGE";
 
+//Action creators
 const _fetchMessages = (messages) => ({ type: GET_MESSAGES, messages });
 const _sendMessage = (message) => ({ type: SEND_MESSAGE, message });
 
+//Thunk creators
 export const fetchMessages = (id) => {
   return async (dispatch) => {
     try {
@@ -28,6 +31,7 @@ export const sendMessage = (message) => {
   };
 };
 
+//Reducer
 export default function (state = [], action) {
   switch (action.type) {
     case GET_MESSAGES:

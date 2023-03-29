@@ -4,6 +4,7 @@ const {
   models: { Halfway, User },
 } = require("../db");
 
+//get all users that sent you a spark
 router.get("/:id", async (req, res, next) => {
   try {
     const likedYou = await Halfway.findAll({
@@ -19,6 +20,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+//create a new spark
 router.post("/:id/:sparkId", async (req, res, next) => {
   try {
     const newHalfway = await Halfway.create({

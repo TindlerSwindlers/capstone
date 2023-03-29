@@ -7,13 +7,14 @@ import Box from "@mui/material/Box";
 
 export const Homepage = () => {
   const { posts } = useSelector((state) => state);
+  const { messages } = useSelector((state) => state);
   const { comments } = useSelector((state) => state);
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchPosts());
-  }, [comments]);
+  }, [comments, messages]);
 
   return (
     <Box

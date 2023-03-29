@@ -1,8 +1,10 @@
 import axios from "axios";
 
+//Action types
 const FETCH_HALFWAYS = "FETCH_HALFWAYS";
 const ADD_HALFWAY = "ADD_HALFWAY";
 
+//Thunk creators
 export const fetchProfileHalfways = (id) => {
   return async (dispatch) => {
     const res = await axios.get(`/api/halfways/${id}`);
@@ -23,6 +25,7 @@ export const addHalfway = (userId, otherUserId) => {
   };
 };
 
+//Reducer
 export default function (state = [], action) {
   switch (action.type) {
     case FETCH_HALFWAYS:
