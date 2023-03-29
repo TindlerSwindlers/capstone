@@ -4,6 +4,7 @@ const {
   models: { Match, Halfway, UserMatch, User },
 } = require("../db");
 
+//get all matches for a certain user
 router.get("/:id", async (req, res, next) => {
   try {
     let matches = await UserMatch.findAll({
@@ -25,6 +26,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+//create a new match and a new User-Match
 router.post("/", async (req, res, next) => {
   try {
     await Halfway.destroy({

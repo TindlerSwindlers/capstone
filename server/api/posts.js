@@ -1,17 +1,17 @@
-const router = require('express').Router();
+const router = require("express").Router();
 const {
   models: { User, Comment, Post },
-} = require('../db');
-const multer = require('multer');
-const { v4: uuidv4 } = require('uuid');
+} = require("../db");
+const multer = require("multer");
+const { v4: uuidv4 } = require("uuid");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './public/');
+    cb(null, "./public/");
   },
   filename: (req, file, cb) => {
-    const fileName = file.originalname.toLowerCase().split(' ').join('-');
-    cb(null, uuidv4() + '-' + fileName);
+    const fileName = file.originalname.toLowerCase().split(" ").join("-");
+    cb(null, uuidv4() + "-" + fileName);
   },
 });
 
@@ -19,23 +19,24 @@ const upload = multer({
   storage: storage,
   fileFilter: (req, file, cb) => {
     if (
-      file.mimetype == 'image/png' ||
-      file.mimetype == 'image/jpg' ||
-      file.mimetype == 'image/jpeg'
+      file.mimetype == "image/png" ||
+      file.mimetype == "image/jpg" ||
+      file.mimetype == "image/jpeg"
     ) {
       cb(null, true);
     } else {
       cb(null, false);
-      return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+      return cb(new Error("Only .png, .jpg and .jpeg format allowed!"));
     }
   },
 });
 
-router.get('/', async (req, res, next) => {
+//get all posts
+router.get("/", async (req, res, next) => {
   try {
     const posts = await Post.findAll({
       include: [{ model: Comment }, { model: User }],
-      order: [['updatedAt', 'DESC']],
+      order: [["updatedAt", "DESC"]],
     });
     res.json(posts);
   } catch (err) {
@@ -43,13 +44,14 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.post('/:id', upload.single('myImage'), async (req, res, next) => {
+//upload image
+router.post("/:id", upload.single("myImage"), async (req, res, next) => {
   try {
-    let imageName = '';
+    let imageName = "";
     if (req.file) {
       imageName = req.file.filename;
     } else {
-      imageName = 'no-image-icon.png';
+      imageName = "no-image-icon.png";
     }
     const newPost = await Post.create({
       ...req.body,
@@ -62,9 +64,9 @@ router.post('/:id', upload.single('myImage'), async (req, res, next) => {
   }
 });
 
-router.put('/:id', upload.single('myImage'), async (req, res, next) => {
+router.put("/:id", upload.single("myImage"), async (req, res, next) => {
   try {
-    let imageName = '';
+    let imageName = "";
     if (req.file) {
       imageName = req.file.filename;
     } else {
@@ -87,11 +89,12 @@ router.put('/:id', upload.single('myImage'), async (req, res, next) => {
   }
 });
 
-router.get('/:id', async (req, res, next) => {
+//get posts for a certain user
+router.get("/:id", async (req, res, next) => {
   try {
     const post = await Post.findByPk(req.params.id, {
       include: [{ model: Comment }, { model: User }],
-      order: [['updatedAt', 'DESC']],
+      order: [["updatedAt", "DESC"]],
     });
     res.json(post);
   } catch (err) {
@@ -99,7 +102,8 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.delete('/:id', async (req, res, next) => {
+//delete a post
+router.delete("/:id", async (req, res, next) => {
   try {
     const target = await Post.findByPk(req.params.id);
     await target.destroy();
@@ -109,11 +113,12 @@ router.delete('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/addlikes/:id', async (req, res, next) => {
+//add like
+router.post("/addlikes/:id", async (req, res, next) => {
   try {
     let post = await Post.findByPk(req.params.id, {
       include: [{ model: Comment }, { model: User }],
-      order: [['updatedAt', 'DESC']],
+      order: [["updatedAt", "DESC"]],
     });
     if (!post.likes.includes(req.body.id)) {
       post.likes.push(req.body.id);

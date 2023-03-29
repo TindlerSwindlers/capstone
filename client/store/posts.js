@@ -1,28 +1,26 @@
-import axios from 'axios';
-import history from '../history';
-//Action types
+import axios from "axios";
+import history from "../history";
 
-const GET_POSTS = 'GET_POSTS';
-const ADD_POST = 'ADD_POST';
-const DELETE_POST = 'DELETE_POST';
-const EDIT_POST = 'EDIT_POST';
+//Action types
+const GET_POSTS = "GET_POSTS";
+const ADD_POST = "ADD_POST";
+const DELETE_POST = "DELETE_POST";
+const EDIT_POST = "EDIT_POST";
 
 //Action creators
-
 const _getPosts = (posts) => ({ type: GET_POSTS, posts });
 const _addPost = (post) => ({ type: ADD_POST, post });
 const _deletePost = (id) => ({ type: DELETE_POST, id });
 const _editPost = (post) => ({ type: EDIT_POST, post });
 
 //Thunk creators
-
 export const fetchPosts = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get('/api/posts');
+      const response = await axios.get("/api/posts");
       dispatch(_getPosts(response.data));
     } catch (e) {
-      console.log('Error trying to get all posts in thunk', e);
+      console.log("Error trying to get all posts in thunk", e);
     }
   };
 };
@@ -31,7 +29,7 @@ export const addPost = (id, data) => {
   return async (dispatch) => {
     const response = await axios.post(`/api/posts/${id}`, data);
     dispatch(_addPost(response.data));
-    history.push('../home');
+    history.push("../home");
   };
 };
 
@@ -46,7 +44,7 @@ export const editPost = (id, data) => {
   return async (dispatch) => {
     const response = await axios.put(`/api/posts/${id}`, data);
     dispatch(_editPost(response.data));
-    history.push('../home');
+    history.push("../home");
   };
 };
 

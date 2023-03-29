@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { sendMessage } from "../../store/messages";
+import { fetchMessages, sendMessage } from "../../store/messages";
 import TextField from "@mui/material/TextField";
 import { useHistory } from "react-router-dom";
 
@@ -29,6 +29,7 @@ const NewMessage = ({ usersendingid, userreceivingid }) => {
   const onSubmit = (event) => {
     event.preventDefault();
     dispatch(sendMessage(message));
+    dispatch(fetchMessages(usersendingid));
     handleHistory();
   };
 

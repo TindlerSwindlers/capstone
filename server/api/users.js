@@ -1,15 +1,15 @@
-const router = require('express').Router();
+const router = require("express").Router();
 const {
   models: { User, Comment, Post },
-} = require('../db');
-const {Op} = require('sequelize')
+} = require("../db");
+const { Op } = require("sequelize");
 
-
-router.get('/', async (req, res, next) => {
+//get all users
+router.get("/", async (req, res, next) => {
   try {
     const users = await User.findAll({
       include: [{ model: Post }, { model: Comment }],
-      attributes: ['id', 'username', 'interest', 'imageUrl'],
+      attributes: ["id", "username", "interest", "imageUrl"],
     });
     res.json(users);
   } catch (err) {
@@ -17,7 +17,8 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:id', async (req, res, next) => {
+//get a certain user
+router.get("/:id", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id, {
       include: [{ model: Post }, { model: Comment }],
@@ -28,12 +29,12 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.get('/recommended/:id', async (req, res, next) => {
+router.get("/recommended/:id", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id, {
       include: [{ model: Post }, { model: Comment }],
     });
-    console.log('USEEEER', user.interest);
+    console.log("USEEEER", user.interest);
     const users = await User.findAll({
       include: [{ model: Post }, { model: Comment }],
       where: {
@@ -48,7 +49,7 @@ router.get('/recommended/:id', async (req, res, next) => {
   }
 });
 
-router.put('/:id', async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
     await user.update(req.body);
@@ -58,9 +59,7 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-
-
-router.delete('/:id', async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
     const target = await User.findByPk(req.params.id);
     await target.destroy();

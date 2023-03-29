@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-import { sendMessage } from "../../store/messages";
+import { fetchMessages, sendMessage } from "../../store/messages";
 import { useDispatch, useSelector } from "react-redux";
 import { Card } from "@mui/material";
 
-const MessageResponse = () => {
+const MessageResponse = ({ id }) => {
   const auth = useSelector((state) => state);
   const dispatch = useDispatch();
   const [state, setState] = useState(false);
@@ -27,6 +27,7 @@ const MessageResponse = () => {
     e.preventDefault();
     setState(true);
     dispatch(sendMessage(message));
+    dispatch(fetchMessages(id));
   };
 
   return (
