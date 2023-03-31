@@ -1,106 +1,132 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { logout } from "../store/auth";
-import Avatar from "@mui/material/Avatar";
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout } from '../store/auth';
+import Avatar from '@mui/material/Avatar';
 import {
+  Box,
   Drawer,
   IconButton,
   List,
   ListItem,
   ListItemText,
   Typography,
-} from "@mui/material";
-import MenuIcon from "@material-ui/icons/Menu";
+} from '@mui/material';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const Navbar = ({ handleClick, isLoggedIn, auth }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
   return (
-    <div>
-      <h1>Welcome to Spark!</h1>
+    <div
+      style={{
+        backgroundColor: '#E6B0AA',
+        borderRadius: '15px 15px 0 0',
+      }}
+    >
+      <Box
+        sx={{
+          padding: '1rem',
+          color: 'yellow',
+        }}
+      >
+        <Link to="/home">
+          <h1 style={{ color: '#FEF9E7' }}>Spark!</h1>
+        </Link>
+      </Box>
       <nav>
         {isLoggedIn ? (
-          <>
+          <Box>
             <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
               <List>
                 <ListItem onClick={() => setOpenDrawer(false)}>
                   <ListItemText>
-                    <Link to='/home'>Home</Link>
+                    <Link to="/home">Home</Link>
                   </ListItemText>
                 </ListItem>
                 <ListItem onClick={() => setOpenDrawer(false)}>
                   <ListItemText>
-                    <Link to='/newpost'>New Post</Link>
+                    <Link to="/newpost">New Post</Link>
                   </ListItemText>
                 </ListItem>
                 <ListItem onClick={() => setOpenDrawer(false)}>
                   <ListItemText>
-                    <Link to='/yourMatches'>Your Matches</Link>
+                    <Link to="/yourMatches">Your Matches</Link>
                   </ListItemText>
                 </ListItem>
                 <ListItem onClick={() => setOpenDrawer(false)}>
                   <ListItemText>
-                    <Link to='/profile'>
-                      <Avatar alt={auth.name} src={auth.imageUrl} />
-                    </Link>
+                    <Link to="/messages">Messages</Link>
                   </ListItemText>
                 </ListItem>
                 <ListItem onClick={() => setOpenDrawer(false)}>
                   <ListItemText>
-                    <Link to='/messages'>Messages</Link>
-                  </ListItemText>
-                </ListItem>
-                <ListItem onClick={() => setOpenDrawer(false)}>
-                  <ListItemText>
-                    <a href='#' onClick={handleClick}>
+                    <a href="#" onClick={handleClick}>
                       Logout
                     </a>
                   </ListItemText>
                 </ListItem>
               </List>
             </Drawer>
-            <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
-              <MenuIcon />
-              <Typography
-                sx={{ color: "black", fontSize: 22, fontFamily: "verdana" }}
-              >
-                {" "}
-                Menu
-              </Typography>
-            </IconButton>
-          </>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
+                <MenuIcon />
+                <Typography
+                  sx={{ color: 'black', fontSize: 22, fontFamily: 'verdana' }}
+                >
+                  Menu
+                </Typography>
+              </IconButton>
+              <Link to="/profile">
+                <Avatar alt={auth.name} src={auth.imageUrl} />
+              </Link>
+            </Box>
+          </Box>
         ) : (
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
+              display: 'flex',
+              justifyContent: 'center',
             }}
           >
             <List
               sx={{
-                display: "flex",
+                display: 'flex',
                 height: 30,
-                marginTop: 5,
-                backgroundColor: "#3498DB",
-                "&:hover": {
-                  backgroundColor: "primary.main",
-                  opacity: [0.9, 0.8, 0.7],
-                },
-                borderRadius: "16px",
-                color: "black",
+                backgroundColor: '#3498DB',
+                borderRadius: '5px',
+                margin: 2,
               }}
             >
               <ListItem>
                 <ListItemText>
-                  <Link to='/login'>
-                    <Typography sx={{ color: "black" }}>Login</Typography>
+                  <Link to="/login">
+                    <Typography
+                      sx={{
+                        color: 'black',
+                        '&:hover': {
+                          color: 'white',
+                        },
+                      }}
+                    >
+                      Login
+                    </Typography>
                   </Link>
                 </ListItemText>
               </ListItem>
               <ListItem>
                 <ListItemText>
-                  <Link to='/signup'>
-                    <Typography sx={{ color: "black" }}>Sign Up</Typography>
+                  <Link to="/signup">
+                    <Typography
+                      sx={{
+                        color: 'black',
+                        '&:hover': {
+                          color: 'white',
+                        },
+                        width: '60px',
+                      }}
+                    >
+                      Sign Up
+                    </Typography>
                   </Link>
                 </ListItemText>
               </ListItem>
@@ -108,7 +134,6 @@ const Navbar = ({ handleClick, isLoggedIn, auth }) => {
           </div>
         )}
       </nav>
-      <hr />
     </div>
   );
 };

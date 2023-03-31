@@ -47,11 +47,11 @@ const EditPost = (props) => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        padding: 3,
       }}
     >
       <Box
         sx={{
-          width: '50%',
           display: 'flex',
           flexDirection: 'column',
         }}
@@ -78,6 +78,7 @@ const EditPost = (props) => {
           variant="contained"
           endIcon={<BorderColorIcon />}
           onClick={handleSubmit}
+          sx={{ backgroundColor: '#CB4335' }}
         >
           Save
         </Button>

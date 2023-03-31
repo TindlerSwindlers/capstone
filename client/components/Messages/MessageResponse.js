@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
-import { fetchMessages, sendMessage } from "../../store/messages";
-import { useDispatch, useSelector } from "react-redux";
-import { Card } from "@mui/material";
+import React, { useState } from 'react';
+import { fetchMessages, sendMessage } from '../../store/messages';
+import { useDispatch, useSelector } from 'react-redux';
+import { Card, TextField, Box, IconButton } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 
 const MessageResponse = ({ id }) => {
   const auth = useSelector((state) => state);
   const dispatch = useDispatch();
   const [state, setState] = useState(false);
   const [message, setMessage] = useState({
-    text: "",
-    userSendingId: "",
-    userReceivingId: "",
+    text: '',
+    userSendingId: '',
+    userReceivingId: '',
   });
 
   const handleChange = (e) => {
@@ -34,22 +34,32 @@ const MessageResponse = ({ id }) => {
     <Card
       sx={{
         borderRadius: 4,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "200px",
+        display: 'flex',
         margin: 1,
         padding: 1,
-        backgroundColor: "#FDEDEC",
+        backgroundColor: '#D5F5E3',
       }}
     >
       {state ? (
         <p>Message sent!</p>
       ) : (
-        <div>
-          <TextField id='text' name='message' onChange={handleChange} />
-          <button onClick={handleSend}>Send Message</button>
-        </div>
+        <Box
+          sx={{ display: 'flex', justifyContent: 'space-around', height: 40 }}
+        >
+          <TextField
+            label="Message"
+            size="small"
+            name="message"
+            onChange={handleChange}
+            sx={{ backgroundColor: 'white', width: '70%' }}
+          />
+          <IconButton
+            onClick={handleSend}
+            sx={{ backgroundColor: '#45B39D', fontSize: 'small' }}
+          >
+            <SendIcon />
+          </IconButton>
+        </Box>
       )}
     </Card>
   );

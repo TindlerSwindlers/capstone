@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { FaArrowCircleUp } from "react-icons/fa";
-import { Button } from "../../public/Styles";
+import React, { useState } from 'react';
+import { FaArrowCircleUp } from 'react-icons/fa';
+import { Button } from '../../public/Styles';
 
 const ScrollButton = () => {
   const [visible, setVisible] = useState(false);
@@ -17,16 +17,16 @@ const ScrollButton = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
-  window.addEventListener("scroll", toggleVisible);
+  window.addEventListener('scroll', toggleVisible);
 
   return (
     <Button
       style={{
-        display: visible ? "inline" : "none",
+        display: visible ? 'inline' : 'none',
       }}
     >
       <FaArrowCircleUp onClick={scrollToTop} />

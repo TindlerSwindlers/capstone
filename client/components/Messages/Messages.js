@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchMessages } from "../../store/messages";
-import MessageDisplay from "./MessageDisplay";
-import { Card } from "@mui/material";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchMessages } from '../../store/messages';
+import MessageDisplay from './MessageDisplay';
+import { Card, Box } from '@mui/material';
 
 const Messages = () => {
   const { auth, messages } = useSelector((state) => state);
@@ -13,20 +13,16 @@ const Messages = () => {
   }, []);
 
   return (
-    <Card
+    <Box
       sx={{
         borderRadius: 4,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "240px",
-        margin: 1,
-        padding: 1,
-        backgroundColor: "primary.main",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
       }}
     >
       <MessageDisplay messages={messages} auth={auth} />
-    </Card>
+    </Box>
   );
 };
 

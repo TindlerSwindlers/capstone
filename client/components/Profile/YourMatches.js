@@ -107,7 +107,9 @@ const YourMatches = () => {
           )
         )
       ) : (
-        <p>No matches at this moment. Try to send a spark to someone!</p>
+        <Box sx={{ padding: 3 }}>
+          No matches at this moment. Try to send a spark to someone!
+        </Box>
       )}
     </Box>
   );
