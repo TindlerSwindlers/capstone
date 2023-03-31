@@ -10,7 +10,6 @@ const Comment = ({ comments, postId }) => {
   const thisComments = comments
     ? comments.filter((comment) => comment.postId === postId)
     : [];
-
   const dispatch = useDispatch();
   const handleClick = (id) => {
     dispatch(deleteComment(id, postId));
