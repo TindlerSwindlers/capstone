@@ -1,12 +1,12 @@
-import axios from "axios";
-import history from "../history";
-import { fetchPosts } from "./posts";
+import axios from 'axios';
+import history from '../history';
+import { fetchPosts } from './posts';
 
 //Action types
 
-const ADD_COMMENT = "ADD_COMMENT";
-const SET_COMMENTS = "SET_COMMENTS";
-const FETCH_PROFILE_COMMENTS = "FETCH_PROFILE_COMMENTS";
+const ADD_COMMENT = 'ADD_COMMENT';
+const SET_COMMENTS = 'SET_COMMENTS';
+const FETCH_PROFILE_COMMENTS = 'FETCH_PROFILE_COMMENTS';
 //Action creators
 
 const _addComment = (comment) => ({ type: ADD_COMMENT, comment });
@@ -24,9 +24,10 @@ export const fetchProfileComments = (id) => {
   };
 };
 
-export const setComments = (post) => {
+export const setComments = () => {
   return async (dispatch) => {
-    dispatch(_setComments(post));
+    const res = await axios.get(`/api/comments/`);
+    dispatch(_setComments(res.data));
   };
 };
 
@@ -37,7 +38,6 @@ export const addComment = (postId, userId, data) => {
       data
     );
     dispatch(_addComment(response.data));
-    history.push("../home");
   };
 };
 
@@ -49,12 +49,12 @@ export const deleteComment = (id) => {
 };
 
 //Reducer
-export default function (state = { comments: [] }, action) {
+export default function (state = {}, action) {
   switch (action.type) {
     case SET_COMMENTS:
       return action.comments;
     case ADD_COMMENT:
-      return { comments: [...state.comments, action.comment] };
+      return [...state, action.comment];
     case FETCH_PROFILE_COMMENTS:
       return { comments: action.comments };
     default:

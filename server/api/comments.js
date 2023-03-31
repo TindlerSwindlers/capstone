@@ -1,15 +1,14 @@
-const router = require("express").Router();
+const router = require('express').Router();
 const {
   models: { User, Comment },
-} = require("../db");
+} = require('../db');
 
 //get all comments by user id
-router.get("/:id", async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const comments = await Comment.findAll({
-      where: { postId: req.params.id },
       include: [User],
-      order: [["updatedAt", "DESC"]],
+      order: [['updatedAt', 'DESC']],
     });
     res.json(comments);
   } catch (err) {
@@ -18,7 +17,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 //create a new comment
-router.post("/:postid/:userid", async (req, res, next) => {
+router.post('/:postid/:userid', async (req, res, next) => {
   try {
     const newEntry = await Comment.create({
       ...req.body,
@@ -33,13 +32,13 @@ router.post("/:postid/:userid", async (req, res, next) => {
 });
 
 //delete a comment
-router.delete("/:id", async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     const target = await Comment.findByPk(req.params.id);
     await target.destroy();
     res.sendStatus(204);
   } catch (ex) {
-    console.log("Error deleting a comment from API");
+    console.log('Error deleting a comment from API');
     next(ex);
   }
 });

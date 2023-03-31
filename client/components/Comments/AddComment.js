@@ -9,7 +9,6 @@ const AddComment = ({ postId, userId }) => {
   const dispatch = useDispatch();
   const onSubmit = (data, event) => {
     event.preventDefault();
-    console.log(userId);
     dispatch(addComment(postId, userId, data));
     event.target.reset();
   };

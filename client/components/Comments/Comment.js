@@ -1,20 +1,24 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteComment } from '../../store/comments';
+import { deleteComment, setComments } from '../../store/comments';
 import AddComment from './AddComment';
 import { Paper, Box, IconButton } from '@mui/material';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
-const Comment = ({ comments, postId, userId }) => {
+const Comment = ({ comments, postId }) => {
   const { auth } = useSelector((state) => state);
+  const thisComments = comments
+    ? comments.filter((comment) => comment.postId === postId)
+    : [];
+
   const dispatch = useDispatch();
   const handleClick = (id) => {
     dispatch(deleteComment(id, postId));
   };
   return (
     <Box>
-      {comments &&
-        comments.map((comment) => (
+      {thisComments &&
+        thisComments.map((comment) => (
           <Paper
             key={comment.id}
             sx={{

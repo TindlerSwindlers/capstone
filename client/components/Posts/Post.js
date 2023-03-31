@@ -27,7 +27,7 @@ const Post = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setComments(props.post));
+    dispatch(setComments());
   }, []);
 
   const handleClick = () => {
